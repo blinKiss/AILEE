@@ -12,11 +12,20 @@ public class _1443 {
 		for (int i = 0; i < a.length; i++) {
 			a[i] = sc.nextInt();
 		}
-		
-		for (int i = 0; i < a.length; i++) {
-			a[i]=min;
+		for (int i = 1; i < a.length; i++) {
+			min = a[i];
+			for (int j = i-1; j >= 0; j--) {
+				int temp = 0;
+				if (a[j]>min) {
+					temp = a[j+1];
+					a[j+1] = a[j];
+					a[j]=temp;
+				}
+			}
 		}
-		System.out.println(a[i]);
+		for (int i = 0; i < a.length; i++) {
+			System.out.println(a[i]);	
+		}
 		sc.close();
 	}
 }
