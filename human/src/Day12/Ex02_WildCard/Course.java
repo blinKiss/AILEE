@@ -11,6 +11,7 @@ public class Course<T> {
 		// Object 배열요소 생성
 		// (T[]) 제네릭타입으로 변환
 		students = (T[]) (new Object[capacity]);
+		// 윗줄 전구떠서 주석처리
 	}
 	
 	public String getName() {
