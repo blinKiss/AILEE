@@ -1,6 +1,6 @@
 package m1to30;
 
-public class M3_C {
+public class M03_C {
 
 	public static void main(String[] args) {
 

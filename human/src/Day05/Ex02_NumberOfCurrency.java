@@ -86,7 +86,6 @@ public class Ex02_NumberOfCurrency {
 				money = money / 2;
 				sw = true;
 			}
-			System.out.println(money + "\t : " + count + "개");
 
 			
 		}
