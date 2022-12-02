@@ -2,7 +2,7 @@ package m1to30;
 
 import java.util.Scanner;
 
-public class M5_C {
+public class M05_C {
 	
 	public static void showMenu() {
 	
