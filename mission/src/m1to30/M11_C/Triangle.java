@@ -1,38 +1,28 @@
-package m1to30.M11;
+package m1to30.M11_C;
 
-
-public class Triangle extends Shape {
+public class Triangle {
 
 	double width, height;
-	
+	double area;
+
 	// 기본 생성자 - super() 호출
 	public Triangle() {
-		super();
 	}
-	
-	
+
 	// 매개변수가 있는 생성자
 	public Triangle(double width, double height) {
 		this.width = width;
 		this.height = height;
 	}
-	@Override
-	double area() {
+
+	double getArea() {
 		// (가로) x (세로) / 2
 		return width * height / 2;
 	}
 
 	@Override
-	double round() {
-		// (정삼각형) : (한 변의 길이) * 3
-		return width * 3;
-	}
-	// toString()
-	@Override
 	public String toString() {
-		return "Triangle [width=" + width + ", height=" + height + "]";
+		return "Triangle [width=" + width + ", height=" + height + ", area=" + area + "]";
 	}
 
-	
-	
 }

@@ -2,7 +2,7 @@ package m1to30;
 
 import java.util.Scanner;
 
-public class M02 {
+public class M02_C {
 
 	public static void main(String[] args) {
 		try (Scanner sc = new Scanner(System.in)) {
@@ -29,7 +29,7 @@ public class M02 {
 					if (i % 2 == 0) {
 						System.out.print(i);
 						j += i;
-						if (i < N) {
+						if (i < N - 1) {
 							System.out.print("+");
 						}
 					}
