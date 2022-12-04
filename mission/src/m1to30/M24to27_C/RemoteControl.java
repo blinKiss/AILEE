@@ -1,4 +1,4 @@
-package m1to30.M24to27;
+package m1to30.M24to27_C;
 
 public interface RemoteControl {
 

@@ -2,7 +2,7 @@ package m1to30;
 
 import java.util.Scanner;
 
-public class M10_Cheat {
+public class M10_Bro {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

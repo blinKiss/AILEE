@@ -1,7 +1,7 @@
-package m1to30.M24to27;
+package m1to30.M24to27_C;
 
-public class Drone implements RemoteControl {
-	
+public class RcCar implements RemoteControl {
+
 	int battery;
 	int speed;
 	
@@ -30,12 +30,11 @@ public class Drone implements RemoteControl {
 		System.out.println("현재 속도 : " + this.speed);
 	}
 	
-	
 	@Override
 	public void changeBattery() {
 		// TODO Auto-generated method stub
 		System.out.println("배터리 교환");
 	}
 	
-
+	
 }
