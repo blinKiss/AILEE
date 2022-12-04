@@ -21,10 +21,21 @@ public class M10_C {
 //		Boolean QUIT = true;
 //		int first[] = new int [7]; // 지급액 중 처음액수 고정
 		int total[] = new int[10];
-		int index = 0;
+//		int index = 0;
 
+		
+		
+			for (int i = 0; i < name.length; i++) {
+				String out = sc.next();
+				if (out.equals("QUIT")) {
+					break;
+				}
+				name[i] = out;
+				pay[i] = sc.nextInt();
+			}
+		
 		// 마마무 멤버 지급액 입력
-		while (true) {
+/*		while (true) {
 			String outcommand = sc.next();
 			if (outcommand.equals("QUIT")) {
 				break;
@@ -34,9 +45,9 @@ public class M10_C {
 			pay[index] = sc.nextInt(); // pay[0] = 첫 입력 멤버 지급액
 //				first[i] = pay[i];
 			index++;
-		}
+		} */
 
-		sc.close();
+		
 
 		/*
 		 * while(true) { name = sc.nextLine(); pay = sc.nextInt(); if
@@ -45,10 +56,10 @@ public class M10_C {
 		 * }
 		 */
 
-		System.out.println("성명\t출장비\t오만원\t만원\t오천원\t천원\t오백원\t백원\t오십원\t십원\t오원\t일원"); // 첫줄
+		System.out.println("성명"+"   출장비     오만원\t만원\t오천원\t천원\t오백원\t백원\t오십원\t십원\t오원\t일원"); // 첫줄
 
 		for (int i = 0; i < pay.length; i++) {
-			System.out.print(name[i] + "\t" + pay[i] + "\t");
+			System.out.print(name[i] + "  " + pay[i] + "\t");
 
 			for (int j = 0; j < count.length; j++) {
 				count[j] = pay[i] / pm; // ex) 523132/50000=10 -> count[0]=10
@@ -84,5 +95,6 @@ public class M10_C {
 		/*
 		 * private static ArrayList<String> add(String next) { return null; }
 		 */
+		sc.close();
 	}
 }

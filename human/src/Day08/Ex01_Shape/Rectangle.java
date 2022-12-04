@@ -22,7 +22,7 @@ public class Rectangle extends Shape {
 	@Override
 	double round() {
 		// (정사각형) : (한 변의 길이) * 4
-		return width * 4;
+		return width * 4; 
 	}
 	
 	@Override
