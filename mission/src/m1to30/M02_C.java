@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class M02_C {
 
 	public static void main(String[] args) {
-		try (Scanner sc = new Scanner(System.in)) {
+		Scanner sc = new Scanner(System.in); 
 
 			int N = sc.nextInt();
 			int h = 0; // 홀수
@@ -53,6 +53,6 @@ public class M02_C {
 				}
 			}
 			sc.close();
-		}
+		
 	}
 }
