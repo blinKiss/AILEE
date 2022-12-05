@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-import Day15.JDBConnection;
 import Day15.Board.DAO.BoardDAO;
 import Day15.Board.DTO.Board;
 

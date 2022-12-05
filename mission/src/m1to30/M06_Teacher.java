@@ -10,7 +10,6 @@ public class M06_Teacher {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("몇 게임?");
 //		Random random = new Random();
-//		random.nextInt();
 		int lotto[] = new int[6];
 		int N = sc.nextInt();
 		

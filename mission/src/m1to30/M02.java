@@ -11,6 +11,7 @@ public class M02 {
 		int h = 0; // 홀수
 		int j = 0; // 짝수
 		int y = 0; // 약수
+		int r = 0; // 결과
 		while (a <= N) {
 			if (a % 2 == 1) {
 				h += a;
@@ -25,10 +26,10 @@ public class M02 {
 	        if(N <= 100)
 	        for(int i = 1; i <= N; i++)
 	        {
-	            if(num % i == 0)
-	                result += i+" ";
+	            if(N % i == 0)
+	                r += i;
 	        }
-	        return result;
+	        return r;
 	    }
 
 		System.out.println(h);

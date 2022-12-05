@@ -2,7 +2,6 @@ package Day15;
 
 import java.sql.Statement;
 
-import Day06.Ex04_Board.Main;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
