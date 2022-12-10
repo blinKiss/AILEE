@@ -1,2 +1,2 @@
-# Java first step
-preschool teacher?
+# < 7
+preschool teacher
