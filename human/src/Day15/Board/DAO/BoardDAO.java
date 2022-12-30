@@ -1,5 +1,7 @@
 package Day15.Board.DAO;
 
+import java.sql.SQLException;
+import java.sql.Savepoint;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +15,7 @@ public class BoardDAO extends JDBConnection {
 
 		LinkedList<Board> boardList = new LinkedList<>();
 
-		String sql = "SELECT * " + "FROM board ";
+		String sql = " SELECT * " + " FROM board " + " ORDER BY reg_date DESC ";
 
 		try {
 			stmt = con.createStatement(); // 쿼리문 생성
@@ -58,8 +60,7 @@ public class BoardDAO extends JDBConnection {
 				board.setReg_date(rs.getTimestamp("reg_date"));
 				board.setUpd_date(rs.getTimestamp("upd_date"));
 
-			}
-			else {
+			} else {
 				System.out.println(board_no + "번의 게시글이 존재하지 않습니다");
 				board = null;
 			}
@@ -76,19 +77,37 @@ public class BoardDAO extends JDBConnection {
 	public int insert(Board board) {
 
 		int result = 0;
-		String sql = " INSERT INTO board ( title, writer, content )" + " VALUES( ?, ?, ? )";
+		// oracle
+		String sql = " INSERT INTO board ( board_no, title, writer, content )" + " VALUES( SEQ_BOARD.nextval, ?, ?, ?)";
+		/*
+		 * mysql String sql = " INSERT INTO board ( title, writer, content )" +
+		 * " VALUES( ?, ?, ?)";
+		 */
 
+		Savepoint savepoint = null;
 		try {
+			// 롤백하기 위한 SavePoint 설정
+			savepoint = con.setSavepoint("insertSavePoint");
+
 			psmt = con.prepareStatement(sql); // 쿼리문 생성
 			psmt.setString(1, board.getTitle());
 			psmt.setString(2, board.getWriter());
 			psmt.setString(3, board.getContent());
 			result = psmt.executeUpdate(); // SQL 실행 요청
 
+			// 데이터 1개 이상 처리, COMMIT
+			if (result > 0) {
+				con.commit();
+			}
 			// executeQuery() : 데이터 조회
 			// executeUpdate() : 데이터 추가/수정/삭제 -- 적용된 행(데이터)의 수를 반환
 
 		} catch (Exception e) {
+			try {
+				con.rollback(savepoint);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			System.out.println("게시글 등록 시, 예외 발생");
 			e.printStackTrace();
 		}
@@ -100,13 +119,15 @@ public class BoardDAO extends JDBConnection {
 	public int update(Board board) {
 
 		int result = 0;
-		String sql = " UPDATE board " 
-		             + " SET title = ? " 
-		             + "    ,writer = ? " 
-		             + "    ,content = ? "
-		             + "    ,upd_date = now() "
-		             + " WHERE board_no = ? ";
+		String sql = " UPDATE board " + " SET title = ? " + "    ,writer = ? " + "    ,content = ? "
+//		             + "    ,upd_date = now() " -- mysql 문법
+				+ "    ,upd_date = sysdate " // - oracle
+				+ " WHERE board_no = ? ";
+		
+		Savepoint savepoint = null;
 		try {
+			// 롤백하기 위한 SavePoint 설정
+			savepoint = con.setSavepoint("UpdateSavePoint");
 			psmt = con.prepareStatement(sql); // 쿼리문 생성
 			psmt.setString(1, board.getTitle());
 			psmt.setString(2, board.getWriter());
@@ -114,7 +135,16 @@ public class BoardDAO extends JDBConnection {
 			psmt.setInt(4, board.getBoard_no());
 			result = psmt.executeUpdate(); // SQL 실행 요청
 
-		} catch (Exception e) {
+		if( result > 0 ) {
+			con.commit();
+		}
+		
+		} catch (SQLException e) {
+			try {
+				con.rollback(savepoint);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			System.out.println("게시글 수정 시, 예외 발생");
 			e.printStackTrace();
 		}
@@ -127,12 +157,24 @@ public class BoardDAO extends JDBConnection {
 
 		int result = 0;
 		String sql = " DELETE FROM board " + " WHERE board_no = ? ";
+		
+		Savepoint savepoint = null;
 		try {
+			savepoint  = con.setSavepoint("DeleteSavePoint");
 			psmt = con.prepareStatement(sql); // 쿼리문 생성
 			psmt.setInt(1, board_no);
 			result = psmt.executeUpdate(); // SQL 실행 요청
 
-		} catch (Exception e) {
+		if ( result > 0 ) {
+			con.commit();
+		}
+		
+		} catch (SQLException e) {
+			try {
+				con.rollback(savepoint);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			System.out.println("게시글 삭제 시, 예외 발생");
 			e.printStackTrace();
 		}
