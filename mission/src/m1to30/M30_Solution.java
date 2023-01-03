@@ -12,7 +12,7 @@ import java.util.Stack;
  * @since
  * @created 2015. 1. 12.
  */
-public class M30{
+public class M30_Solution{
 
     public static void main(String[] args) {
 
