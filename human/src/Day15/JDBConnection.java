@@ -34,8 +34,14 @@ public class JDBConnection {
 			// localhost			- 호스트 주소(IP주소), localhost 또는 127.0.0.1은 현재 PC의 IP를 가리킨다
 			// :1521				- 포트번호 (1521은 오라클 DB서버의 기본 포트 번호이다)
 			// :xe 또는 :orcl			- SID (서비스 ID // xe와 orcl은 기본ID)
+			
+			// 학원
 			// String url ="jdbc:oracle:thin:@localhost:1521:xe"; // 11g
-			String url = "jdbc:oracle:thin:@localhost:1521:orcl"; // 12c이상
+//			String url = "jdbc:oracle:thin:@localhost:1521:orcl"; // 12c이상
+//			String id = "human";
+//			String pw = "123456";
+			// 집
+			String url = "jdbc:oracle:thin:@ddiYong:1521:doremiplay";
 			String id = "human";
 			String pw = "123456";
 
