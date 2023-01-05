@@ -27,6 +27,12 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/content")
 public class ContentTypeController {
 	
+	@GetMapping("/request")
+	public String request() {
+		
+		return "/content/request";
+	}
+	
 	@PostMapping(path = "/data", consumes = "text/html")
 	public void html() {
 		log.info("GET - /content/data - Content-Type=text/html");
@@ -38,6 +44,7 @@ public class ContentTypeController {
 	public void json(@RequestBody Board board, Model model) {
 		log.info("GET - /content/data - Content-Type=text/json");
 		log.info("[board] - " + board);
+		model.addAttribute("board", board);
 		
 	}
 	
@@ -45,6 +52,7 @@ public class ContentTypeController {
 	public void xml(@RequestBody Board board, Model model) {
 		log.info("GET - /content/data - Content-Type=text/xml");
 		log.info("[board] - " + board);
+		model.addAttribute("board", board);
 	}
 	
 	
