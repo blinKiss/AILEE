@@ -33,6 +33,13 @@ public class ContentTypeController {
 		return "/content/request";
 	}
 	
+	@GetMapping("/requestJQuery")
+	public String requestJQuery() {
+		
+		return "/content/requestJQuery";
+	}
+	
+	
 	@PostMapping(path = "/data", consumes = "text/html")
 	public void html() {
 		log.info("GET - /content/data - Content-Type=text/html");
