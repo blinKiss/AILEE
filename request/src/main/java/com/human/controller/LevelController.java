@@ -13,10 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 클래스 레벨 매핑
- * : 요청 경로들의 공통되는 기본 경로를 클래스에 지정하는 것
+ * : 요청경로들의 공통되는 기본 경로를 클래스에 지정하는 것
  * 
  * @RequesetMapping
- * - method  : Http 요청 메소드를 매핑하는 속성
+ * - method  : Http 요청메소드를 매핑하는 속성
  *   * RequestMethod.GET
  *   * RequestMethod.POST
  *   * RequestMethod.PUT
@@ -33,20 +33,22 @@ import lombok.extern.slf4j.Slf4j;
  * ------------------------------------------------
  * 
  * 경로 패턴 매핑
- * @XXXMapping("/~/{변수}")
- * @PathVariable("변수") 타입 매개변수명
- * : 요청 경로를 동적으로 표현가능하도록 지정
+ * @XXXMapping("/~/{요청변수}") - 지정 URL안에 사용할 경로변수를 { } 안에 작성
+ * @PathVariable("요청변수") 타입 매개변수명
+ * : 요청 경로 안에 요청변수의 값을 매개변수로 지정하는 어노테이션
  * - URL에 변하는 값을 변수로 지정할 수 있다
- * * 요청 경로에 지정한 변수와 매개변수명이 일치하면,
- *   @PathVariable 어노테이션에 변수지정을 생략할 수 있다
+ * 
+ * * 요청경로에 지정한 변수와 매개변수명이 일치하면,
+ *   @PathVariable 어노테이션의 요청변수를 생략할 수 있다
  *   ex) @XXXMapping("/board/read/{boardNo}")
  *       @PathVariable int boardNo
+ *       
  * - /board/read?boardNo=10
  * - /board/read/10
  * 
  * 
  * * @author denim
- * 게시판 요청 경로 매핑
+ * 게시판 요청경로 매핑
  * - /board/list
  * - /board/insert
  * - /board/read

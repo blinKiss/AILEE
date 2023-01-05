@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * @XXXMapping(path = "요청 경로", param= "요청 파라미터")
- * - path : 요청 경로 지정
+ * - path 	: 요청 경로 지정
  * - params : 요청 파라미터를 매핑 조건으로 지정
  * * 같은 경로에 대해서 요청 파라미터에 따라 호출할 메소드를 지정할 수 있다
  * @return
