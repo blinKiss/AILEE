@@ -38,13 +38,13 @@ public class JDBConnection {
 			
 			// 학원
 			// String url ="jdbc:oracle:thin:@localhost:1521:xe"; // 11g
-			// String url = "jdbc:oracle:thin:@localhost:1521:orcl"; // 12c이상
-			// String id = "human";
-			// String pw = "123456";
+			 String url = "jdbc:oracle:thin:@localhost:1521:orcl"; // 12c이상
+			 String id = "human";
+			 String pw = "123456";
 			// 집
-			String url = "jdbc:oracle:thin:@ddiYong:1521:doremiplay";
-			String id = "human";
-			String pw = "123456";
+//			String url = "jdbc:oracle:thin:@ddiYong:1521:doremiplay";
+//			String id = "human";
+//			String pw = "123456";
 
 			con = DriverManager.getConnection(url, id, pw);
 			con.setAutoCommit(false);	// AutoCommit 기능 비활성화
