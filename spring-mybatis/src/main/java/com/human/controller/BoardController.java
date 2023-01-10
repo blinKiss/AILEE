@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.human.domain.Board;
+import com.human.service.BoardService;
 
 
 @Controller
@@ -37,8 +38,7 @@ public class BoardController {
 //	BoardDAO boardDAO = new BoardDAO();
 	
 	@Autowired
-	private BoardDAO boardDAO;
-	
+	private BoardService service;
 	
 	
 
@@ -49,15 +49,11 @@ public class BoardController {
 	 * - 게시글 목록을 모델에 등록
 	 * - /board/list.html 뷰를 응답
 	 * @return
+	 * @throws Exception 
 	 */
 	@GetMapping("/board/list")
-	public String list(Model model) {
-		List<Board> boardList = boardDAO.selectList();
-		System.out.println(boardList);
-		
-		for (Board board : boardList) {
-			System.out.println(board);
-		}
+	public String list(Model model) throws Exception {
+		List<Board> boardList = service.list();
 		
 		model.addAttribute("boardList", boardList);
 		
@@ -83,11 +79,12 @@ public class BoardController {
 	 * @param writer
 	 * @param content
 	 * @return
+	 * @throws Exception 
 	 */
 	@PostMapping("/board/insert")
 	public String insert(@RequestParam("title") String title
 						,@RequestParam("writer") String writer
-						,@RequestParam("content") String content) {
+						,@RequestParam("content") String content) throws Exception {
 		// @RequestParam("파라미터명") 타입 매개변수명
 		// : 요청 파라미터를 매개변수로 가져온다
 		// * 요청 파라미터명과 매개변수명이 일치하면 생략 가능
@@ -99,7 +96,7 @@ public class BoardController {
 		
 		
 //		int result = boardDAO.insert(board);
-		boardDAO.insert(board);
+		service.insert(board);
 		
 		System.out.println("title : " + title);
 		System.out.println("writer : " + writer);
@@ -123,14 +120,15 @@ public class BoardController {
 	 * @param model
 	 * @param boardNo
 	 * @return
+	 * @throws Exception 
 	 */
 	@GetMapping(path = "/board/read", params="boardNo")
-	public String read(Model model, int boardNo) {
+	public String read(Model model, int boardNo) throws Exception {
 		// 게시글 번호로 게시글 정보를 조회
 		System.out.println("게시글 조회...");
 		System.out.println("boardNo : " + boardNo);
 		
-		Board board = boardDAO.select(boardNo);
+		Board board = service.read(boardNo);
 	
 		model.addAttribute("boardNo", boardNo);
 		model.addAttribute("board", board);
@@ -155,14 +153,15 @@ public class BoardController {
 	 * @param model
 	 * @param boardNo
 	 * @return
+	 * @throws Exception 
 	 */
 	@GetMapping(path = "/board/update", params="boardNo")
-	public String updateForm(Model model, int boardNo) {
+	public String updateForm(Model model, int boardNo) throws Exception {
 		// 게시글 번호로 게시글 정보를 조회
 		System.out.println("게시글 조회...");
 		System.out.println("boardNo : " + boardNo);
 		
-		Board board = boardDAO.select(boardNo);
+		Board board = service.read(boardNo);
 	
 		model.addAttribute("boardNo", boardNo);
 		model.addAttribute("board", board);
@@ -177,9 +176,10 @@ public class BoardController {
 	 * - 게시글 읽기로 리다이렉트 -> /board/read.html 응답
 	 * @param request
 	 * @return
+	 * @throws Exception 
 	 */
 	@PutMapping("/board/update")
-	public String update(HttpServletRequest request) {
+	public String update(HttpServletRequest request) throws Exception {
 		// HttpServletRequest
 		// - 클라이언트의 요청과 관련한 기능을 사용할 수 있는 요청객체
 		// - getParameter("파라미터명") : 요청 파라미터의 값을 가져온다
@@ -198,7 +198,7 @@ public class BoardController {
 		board.setContent(content);
 		
 //		int result = boardDAO.update(board);
-		boardDAO.update(board);
+		service.update(board);
 		
 		System.out.println("title : " + title);
 		System.out.println("writer : " + writer);
@@ -215,9 +215,10 @@ public class BoardController {
 	 * - 게시글 읽기로 리다이렉트 -> /board/read.html 응답
 	 * @param request
 	 * @return
+	 * @throws Exception 
 	 */
 	@PostMapping("/board/update")
-	public String updatePost(Board board) {
+	public String updatePost(Board board) throws Exception {
 		// 요청 파라미터명과 일치하는 변수명을 가지고 있는 객체를 사용하여 여러 파라미터를 가져올 수 있다
 		int boardNo = board.getBoardNo();
 		String title = board.getTitle();
@@ -225,7 +226,7 @@ public class BoardController {
 		String content = board.getContent();
 				
 //		int result = boardDAO.update(board);
-		boardDAO.update(board);
+		service.update(board);
 		
 		System.out.println("title : " + title);
 		System.out.println("writer : " + writer);
@@ -242,14 +243,15 @@ public class BoardController {
 	 * - 게시글 목록으로 리다이렉트 -> /board/list.html 응답
 	 * @param boardNo
 	 * @return
+	 * @throws Exception 
 	 */
 	@DeleteMapping("/board/delete")
-	public String delete(int boardNo) {
+	public String delete(int boardNo) throws Exception {
 		// 게시글 번호로 게시글 삭제
 		System.out.println("boardNo : " + boardNo);
 		
 //		int result = boardDAO.delete(boardNo);
-		boardDAO.delete(boardNo);
+		service.delete(boardNo);
 		
 		return "redirect:/board/list";
 	}
@@ -261,14 +263,15 @@ public class BoardController {
 	 * - 게시글 목록으로 리다이렉트 -> /board/list.html 응답
 	 * @param boardNo
 	 * @return
+	 * @throws Exception 
 	 */
 	@PostMapping("/board/delete")
-	public String deletePost(int boardNo) {
+	public String deletePost(int boardNo) throws Exception {
 		// 게시글 번호로 게시글 삭제
 		System.out.println("boardNo : " + boardNo);
 		
 //		int result = boardDAO.delete(boardNo);
-		boardDAO.delete(boardNo);
+		service.delete(boardNo);
 
 		return "redirect:/board/list";
 	}
