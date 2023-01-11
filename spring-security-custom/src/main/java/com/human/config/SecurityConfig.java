@@ -39,14 +39,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// 로그인 설정
 		http.formLogin()
+			.loginPage("/auth/login") // 사용자 지정 로그인 페이지 경로(기본 경로 : /login)
+			.loginProcessingUrl("/auth/login") // 사용자 지정 로그인 처리 경로
 			.permitAll() // 로그인 폼 url 경로는 모든 사용자에 허용
 			;
 
 		// 로그아웃 설정
 		http.logout() // 로그아웃 기본 경로 : /logout
+			.logoutUrl("/auth/logout") // 사용자 지정 로그아웃 처리 경로(기본 경로 : /logout)
+			.invalidateHttpSession(true) // 로그아웃 처리 후, 세션을 무효화
+			.logoutSuccessUrl("/") // 로그아웃 성공 시, 이동할 페이지 경로
 			.permitAll() // 로그아웃 url 경로는 모든 사용자에 허용
 			;
-
+		
+		// CSRF(cross site request forgery)
+		// - 사이트 간 요청 위조하는 공격
+		// - 인증된 사용자가 자신의 의지와 무관하게 웹사이트를 공격하도록 만드는 것
+		// SSL
+		// - 보안서버, 브라우저에서 로그인한 개인정보를 암호화하여 전송하는 기능이 있는 서버
+		// - 해당 사이트에서 로그인한 정보라는 것을 인증
+		
+		// CSRF 방지 기능 비활성화 - (SSL 설정이 되어있지 않아서, 403 에러가 발생하기 때문에)
+//		http.csrf().disable();
 	}
 
 	// 인증 관리 설정 메소드
