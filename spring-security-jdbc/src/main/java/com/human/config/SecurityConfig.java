@@ -3,13 +3,18 @@ package com.human.config;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import com.human.security.CustomLoginSuccessHandler;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -54,6 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.formLogin()
 			.loginPage("/auth/login") // 사용자 지정 로그인 페이지 경로(기본 경로 : /login)
 			.loginProcessingUrl("/auth/login") // 사용자 지정 로그인 처리 경로
+			.successHandler( authenticationSuccessHandler() ) // 로그인 성공 처리
 			.permitAll() // 로그인 폼 url 경로는 모든 사용자에 허용
 			;
 
@@ -68,12 +74,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// 자동 로그인
 		// - 한 번 로그인하면,
 		// 브라우저 종료 후 다시 접속하여도 아이디/비번 입력없이 자동으로 로그인하는 기능이다 
+		// - persistent_logins (자동 로그인 토큰 테이블)을 정의해야한다
 		http.rememberMe()
 			.key("human")
-			// DataSource가 등록된 PersistentRepository 토큰
+			// DataSource가 등록된 PersistentRepository 토큰저장 정보 등록
 			.tokenRepository( tokenRepository() )
 			// 토큰 유효기간 설정 (초 단위)
-			.tokenValiditySeconds(60 * 60 * 24)
+			.tokenValiditySeconds(60 * 60 * 24) // 1일
 			;
 		
 		// CSRF(cross site request forgery)
@@ -121,6 +128,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		repositoryImpl.setDataSource(dataSource);
 		return repositoryImpl;
 	}
+	
+	
+	// 인증 성공 처리 클래스 - 빈 등록
+	@Bean
+	public AuthenticationSuccessHandler authenticationSuccessHandler() {
+		return new CustomLoginSuccessHandler();
+	}
+
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
+	
+	// 인증 관리자 클래스 - 빈 등록
 	
 	
 }
