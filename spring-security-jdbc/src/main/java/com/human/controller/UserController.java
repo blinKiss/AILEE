@@ -30,8 +30,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private AuthenticationManager authenticationManager;
+//	@Autowired
+//	private AuthenticationManager authenticationManager;
 	
 	
 	// 메인 페이지 - /
@@ -89,7 +89,7 @@ public class UserController {
 		
 		// 회원가입 성공 시, 바로 로그인
 		if( result > 0) {
-			HttpSession session = joinAndAuthentication(user, request);
+			HttpSession session = userService.tokenAuthentication(user, request);
 			
 		}
 		// RedirectAttributes : 리다이렉트 될 경로에 전송할 데이터를 가지고 있는 인터페이스
@@ -111,27 +111,29 @@ public class UserController {
 	
 	
 		
-	// 회원가입 후 바로 로그인 처리
-	private HttpSession joinAndAuthentication(Users user, HttpServletRequest request) throws Exception {
-		
-		String username = user.getUserId();
-		String password = user.getUserPw();
-		
-		HttpSession session = request.getSession();
-		
-		// 아이디, 패스워드로 인증토큰 생성
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken( username, password );
-		
-		// 토큰에 요청정보를 등록
-		token.setDetails( new WebAuthenticationDetails(request));
-		
-		// 토큰을 이용하여 인증 (로그인)
-		Authentication authentication = authenticationManager.authenticate(token);
-		User authUser = (User) authentication.getPrincipal();
-		log.info("인증된 사용자 아이디 : " + authUser.getUsername());
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		
-		return session;
-	}
+	// 토큰 생성 후, 인증 처리
+//	private HttpSession tokenAuthentication(Users user, HttpServletRequest request) throws Exception {
+//		
+//		String username = user.getUserId();
+//		String password = user.getUserPwChk(); // userPw는 암호화되기 때문에, userPwChk를 사용
+//		log.info("username : " + username);
+//		log.info("password : " + password);
+//		
+//		HttpSession session = request.getSession();
+//		
+//		// 아이디, 패스워드로 인증토큰 생성
+//		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken( username, password );
+//		
+//		// 토큰에 요청정보를 등록
+//		token.setDetails( new WebAuthenticationDetails(request));
+//		
+//		// 토큰을 이용하여 인증 (로그인)
+//		Authentication authentication = authenticationManager.authenticate(token);
+//		User authUser = (User) authentication.getPrincipal();
+//		log.info("인증된 사용자 아이디 : " + authUser.getUsername());
+//		SecurityContextHolder.getContext().setAuthentication(authentication);
+//		
+//		return session;
+//	}
 		
 }
