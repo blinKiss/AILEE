@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+<meta charset="UTF-8">
+<title>게시글 목록</title>
+</head>
+<body>
+	<h1>게시글 목록</h1>
+
+	<a href="/board/insert">글쓰기</a>
+	<table border="1">
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>등록일자</th>
+			<th>수정일자</th>
+		</tr>
+		
+		<th:block th:each="board : ${boardList}">
+			<tr>
+				<td width="50" align="center" th:text="${board.boardNo}"></td>
+				<td width="300">
+					<a th:href="|/board/read?boardNo=${board.boardNo}|" th:text="${board.title}"></a>
+				</td>
+				<td width="100" align="center" th:text="${board.writer}"></td>
+				
+				
+				<td	width="200" align="center">
+					<span th:text="${#dates.format(board.regDate, 'yyyy-MM-dd HH:mm:ss') }"></span>
+				</td>
+				<td	width="200" align="center">
+					<span th:text="${#dates.format(board.updDate, 'yyyy-MM-dd HH:mm:ss') }"></span>
+				</td>
+			</tr>
+		</th:block>
+	</table>
+</body>
+</html>
