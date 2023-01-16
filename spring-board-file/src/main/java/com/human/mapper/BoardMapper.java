@@ -32,6 +32,9 @@ public interface BoardMapper {
 	// @Param("파라미터명") : xml 매퍼 파일의 SQL쿼리에서 매핑될 파라미터명을 명시하는 어노테이션
 	// 파라미터 갯수가 1개이면 생략 가능
 	public int delete(@Param("boardNo") int boardNo) throws Exception;
+
+	// 게시글 검색
+	public List<Board> search(String keyword) throws Exception;
 	
 	
 }
