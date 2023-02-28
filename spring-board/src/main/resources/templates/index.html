@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html 
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+<meta charset="UTF-8">
+<title>메인 페이지</title>
+</head>
+<body>
+	<h1>게시판 프로젝트</h1>
+	<h2>SPRING BOOT</h2>
+<!-- 	<span>　&nbsp;⦁ SPRING BOOT 2.7.7</span><br>
+	<span>　&nbsp;⦁ Thymeleaf</span><br>
+	<span>　&nbsp;⦁ ORACLE</span><br>
+	<span>　&nbsp;⦁ Mybatis 3.0</span> -->
+	<ul>
+	<li>SPRING BOOT 2.7.7</li> 
+	<li>Thymeleaf</li> 
+	<li>ORACLE</li> 
+	<li>Mybatis 3.0</li> 
+	</ul>
+	<h3 th:text="${data}"></h3>
+	
+	<a href="/board/list">게시판</a>
+</body>
+</html>

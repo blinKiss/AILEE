@@ -10,7 +10,7 @@ public class M01_C {
 		int math = sc.nextInt();
 		int java = sc.nextInt();
 		int sum = eng + math + java;
-		double avg = (eng + math + java) / 3;
+		double avg = (eng + math + java) / 3.0;
 		System.out.println("영어 점수 : " + eng);
 		System.out.println("수학 점수 : " + math);
 		System.out.println("자바 점수 : " + java);

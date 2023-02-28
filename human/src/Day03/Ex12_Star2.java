@@ -11,7 +11,7 @@ public class Ex12_Star2 {
 		int n = sc.nextInt();
 		
 		for (int i = 1; i <= n ; i++) {
-			for (int j = n; j >= i; j--) {
+			for (int j = n-1; j >= i; j--) {
 				System.out.print("*");
 			
 			}
