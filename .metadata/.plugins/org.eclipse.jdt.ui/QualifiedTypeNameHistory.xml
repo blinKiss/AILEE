@@ -5,4 +5,9 @@
     <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="com.login.dto.MemberDTO"/>
     <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.http.HttpServletRequest"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="jakarta.servlet.http.Cookie"/>
+    <fullyQualifiedTypeName name="com.team1.service.MemberServiceImpl"/>
+    <fullyQualifiedTypeName name="com.team1.service.MemberService"/>
 </qualifiedTypeNameHistroy>
