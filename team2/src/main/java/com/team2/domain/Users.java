@@ -21,7 +21,7 @@ public class Users {
 	private int enabled;			// 휴면여부
 	private LocalDateTime regDate;	// 등록일자
 	private LocalDateTime updDate;	// 수정일자
-	private int birthday;			// 생년월일
+	private String birthday;		// 생년월일
 	private String gender;			// 성별
 	private String address;			// 주소
 	private String address_detail;	// 상세주소

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<title>게시글 목록</title>
@@ -28,13 +28,6 @@
 	          <a class="nav-link active" aria-current="page" href="/board/list">게시판</a>
 	        </li>
 	      </ul>
-	      
-	      <!-- 비인증 시, 로그인 버튼 -->
-		  <!-- isAnonymous() : 인증되지 않은 사용자 이면 true, 아니면 false -->
-		  <th:block sec:authorize="isAnonymous()">
-			<button type="button" onclick="location.href='/auth/login'" class="btn btn-primary mx-1">로그인</button>
-			<button type="button" onclick="location.href='/auth/join'" class="btn btn-primary mx-1">회원가입</button>
-		  </th:block>
 	      
 	      
 	      <form action="/auth/logout" method="post" class="mx-3">
@@ -68,8 +61,6 @@
 				<a href="/board/insert" class="btn btn-primary">글쓰기</a>
 			</div>	
 		</div>
-		
-		
 		
 		<table class="table table-striped table-hover shadow">
 			<thead class="table-dark text-center">
@@ -175,6 +166,6 @@
 	
 	
 	<!-- js -->
-<!-- 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

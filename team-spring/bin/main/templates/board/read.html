@@ -23,15 +23,6 @@
 	        </li>
 	      </ul>
 	      
-	      	      
-<!-- 	      <form class="d-flex" role="search"> -->
-<!-- 		  	<input class="form-control me-2" type="search" placeholder="검색어 입력" -->
-<!-- 						aria-label="Search"> -->
-<!-- 		  	<button class="btn btn-outline-success" type="submit"> -->
-<!-- 		  		<i class="bi bi-search"></i> -->
-<!-- 		  	</button> -->
-<!-- 		  </form> -->
-		  
 	      
 	      
 	      <!-- 비인증 시, 로그인 버튼 -->
@@ -90,8 +81,6 @@
 						<textarea name="content" cols="40" rows="10" class="form-control" th:text="${board.content}" readonly></textarea>
 					</td>
 				</tr>
-				
-				{% if %} 
 				<tr>
 					<td>썸네일</td>
 					<td>
@@ -120,7 +109,6 @@
 						</ul>
 					</td>
 				</tr>
-				{% endif %}
 			</table>
 			<div class="d-flex justify-content-center">
 				<!-- 작성자 본인만 수정/삭제 가능 -->
@@ -178,7 +166,7 @@
 						// 파일 항목을 화면에서 제거
 						// btn.parentNode.remove() 
 						// 삭제 후 새로고침
-						location.reload()
+						// location.reload()
 						// 새 파일목록 갱신
 						// - id="file-list" 아래 파일목록 비움
 						let fileList = document.getElementById('file-list')
