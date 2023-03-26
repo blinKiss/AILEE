@@ -7,7 +7,7 @@
 	<!-- 파일 등록 -->
 	<insert id="insert">
 		INSERT INTO files ( file_no, parent_table, parent_no, file_name, file_path ) 
-		VALUES ( SEQ_FILE.nextval, #{parentTable}, SEQ_BOARD.currval, #{fileName}, #{filePath} )
+		VALUES ( SEQ_FILES.nextval, #{parentTable}, SEQ_BOARD.currval, #{fileName}, #{filePath} )
 	</insert>
 	
 	<!-- 파일 목록 조회 -->

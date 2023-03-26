@@ -6,8 +6,11 @@
 
 	<!-- 회원 등록 -->
 	<insert id="join">
-		INSERT INTO users (user_no, user_id, user_pw, name, email, birthday, address, address_detail, gender)
-		VALUES (SEQ_USER.nextval, #{userId}, #{userPw}, #{name}, #{email}, #{birthday}, #{address}, #{address_detail}, #{gender})
+		INSERT INTO users (user_no, user_id, user_pw, name, email, nickname, birthday, 
+		address, address_detail, gender)
+		
+		VALUES (SEQ_USERS.nextval, #{userId}, #{userPw}, #{name}, #{email}, #{nickname}, 
+		#{birthday}, #{address}, #{address_detail}, #{gender})
 	</insert>
 
 	<!-- 권한 등록 -->

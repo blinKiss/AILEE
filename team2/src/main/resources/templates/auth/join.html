@@ -11,6 +11,8 @@
 	crossorigin="anonymous">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+	
 </head>
 
 <body>
@@ -33,14 +35,30 @@
 					<input type="password" class="form-control" name="userPw" placeholder="패스워드" /> <br> 
 					<input type="password" class="form-control" name="userPwChk" placeholder="패스워드 확인" /> <br>
 
-					<!-- 이름 -->
+					<!-- 전화번호 -->
+<!--                 	<input type="tel" class="form-control" onkeyup="inputTelNumber(this);" name="userPh" maxlength="13" placeholder="전화번호"> -->
+<!-- 					<select name="userPh"> -->
+<!--                 		<option value="010" selected>010</option> -->
+<!-- 		                <option value="011">011</option> -->
+<!-- 		                <option value="016">017</option> -->
+<!-- 		                <option value="018">018</option> -->
+<!-- 		                <option value="019">019</option> -->
+<!--             		</select>- -->
+<!-- 		            <input name="userPh" type="number" value="" size="4" maxlength="4" autocomplete="off">- -->
+<!-- 		            <input name="userPh" type="number" value="" size="4" maxlength="4" autocomplete="off"> -->
+		            
+		            
+            		<!-- 이름 -->
 					<input type="text" class="form-control" name="name" placeholder="이름" /> <br> 
 					
 					<!-- 이메일 -->
 					<input type="text" class="form-control" name="email" placeholder="이메일" /> <br>
 
+					<!-- 닉네임 -->
+					<input type="text" class="form-control" name="nickname" placeholder="닉네임" /> <br>
+
 					<!-- 생년월일 -->
-<!-- 					<input type="text" class="form-control" name="birthday" -->
+<!-- 				<input type="text" class="form-control" name="birthday" -->
 <!-- 						placeholder="생년월일 (예) 990101" maxlength=6 -->
 <!-- 						onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" /> <br> -->
 					<input name="birthday" type="date" class="form-control" min="1900-01-01" id="dNow"> <br>
@@ -61,6 +79,11 @@
 					</select> <br>
 					
 					<!-- 권한 -->	
+					<select type="number" min="0" max="1" class="form-control" name="adm">
+						<option value="select" selected disabled>권한 선택(관리자 생성 후 주석)</option>
+						<option value="0">사용자</option>
+						<option value="1">관리자</option>
+					</select> <br>
 <!-- 					<select class="form-control" name="auth"> -->
 <!-- 						<option value="select" selected disabled>권한 선택(관리자 생성 후 주석)</option> -->
 <!-- 						<option value="ROLE_USER">사용자</option> -->

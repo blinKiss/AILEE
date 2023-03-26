@@ -19,7 +19,7 @@
 	      <ul class="navbar-nav me-auto mb-2 mb-md-0">
 	        
 	        <li class="nav-item">
-	          <a class="nav-link" href="/board/list">게시판</a>
+	          <a class="nav-link" href="/notice/list">게시판</a>
 	        </li>
 	      </ul>
 	      
@@ -67,27 +67,27 @@
 		<span th:text="${_csrf.headerName}"></span>
 -->
 		
-		<form action="/board/delete" method="post" id="form">
+		<form action="/notice/delete" method="post" id="form">
 		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-			<input type="hidden" name="boardNo" th:value="${board.boardNo}" readonly>
+			<input type="hidden" name="ntNo" th:value="${notice.ntNo}" readonly>
 			<table class="table">
 				<tr>
 					<td>제목</td>
 					<td>
 						<!-- name : 요청 파라미터명 -->
-						<input type="text" name="title" class="form-control" th:value="${board.title}" readonly>
+						<input type="text" name="ntSubject" class="form-control" th:value="${notice.ntSubject}" readonly>
 					</td>
 				<tr>
 				<tr>
 					<td>작성자</td>
 					<td>
-						<input type="text" name="writer" class="form-control" th:value="${board.writer}" readonly>
+						<input type="text" name="ntId" class="form-control" th:value="${notice.ntId}" readonly>
 					</td>
 				</tr>
 				<tr>
 					<td>내용</td>
 					<td>
-						<textarea name="content" cols="40" rows="10" class="form-control" th:text="${board.content}" readonly></textarea>
+						<textarea name="content" cols="40" rows="10" class="form-control" th:text="${notice.ntContent}" readonly></textarea>
 					</td>
 				</tr>
 				
@@ -112,7 +112,7 @@
 								<li>
 									<a th:text="${file.fileName}" href="#" th:href="|/file/${file.fileNo}|" ></a>
 									<!-- 파일 삭제 버튼 -->
-									<th:block th:if="${writer}">
+									<th:block th:if="${ntId}">
 										<button type="button" th:id="|file-${file.fileNo}|" class="btn btn-danger btn-file-delete" th:data="${file.fileNo}">삭제</button>
 									</th:block>
 								</li>
@@ -124,9 +124,9 @@
 			</table>
 			<div class="d-flex justify-content-center">
 				<!-- 작성자 본인만 수정/삭제 가능 -->
-				<th:block th:if="${writer}">
+				<th:block th:if="${ntId}">
 					<button type="button" class="btn btn-primary mx-2" onclick="moveUpdate()">수정</button>
-					<button type="button" class="btn btn-danger mx-2" onclick="boardDelete()">삭제</button>
+					<button type="button" class="btn btn-danger mx-2" onclick="noticeDelete()">삭제</button>
 				</th:block>
 				<button type="button" class="btn btn-success mx-2" onclick="moveList()">목록</button>
 			</div>
@@ -139,7 +139,7 @@
 
 		let form = document.getElementById("form")
 		let btnFileDelete = document.querySelectorAll(".btn-file-delete")
-		let boardNo = "[[${board.boardNo}]]"
+		let ntNo = "[[${notice.ntNo}]]"
 		
 		let csrf_token = "[[${_csrf.token}]]"
 		let csrf_header = "[[${_csrf.headerName}]]"
@@ -187,7 +187,7 @@
 						let fileRequest = new XMLHttpRequest()
 						
 												
-						fileRequest.open("GET", "/board/file/list?boardNo=" + boardNo, true)
+						fileRequest.open("GET", "/notice/file/list?ntNo=" + ntNo, true)
 						fileRequest.send()
 						
 						fileRequest.onreadystatechange = function() {
@@ -202,7 +202,7 @@
 						imgList.textContent = ""
 						// - 새 파일목록 요청
 						let imgRequest = new XMLHttpRequest()
-						imgRequest.open("GET", "/board/img/list?boardNo=" + boardNo, true)
+						imgRequest.open("GET", "/notice/img/list?ntNo=" + ntNo, true)
 						imgRequest.send()
 						
 						imgRequest.onreadystatechange = function() {
@@ -225,14 +225,14 @@
 		
 		
 		function moveUpdate() {
-			location.href = "/board/update?boardNo=" + boardNo
+			location.href = "/notice/update?ntNo=" + ntNo
 		}
 
 		function moveList() {
-			location.href = "/board/list"
+			location.href = "/notice/list"
 		}
 		
-		function boardDelete() {
+		function noticeDelete() {
 			let check = confirm("정말로 삭제하시겠습니까?")
 			if( check ) {
 				form.submit()
