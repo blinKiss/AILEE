@@ -35,9 +35,12 @@
 						<br>
 						
 						<!-- 패스워드 -->
-						<input type="password" class="form-control" name="userPw" placeholder="패스워드" /> 
-						<br> 
-						<input type="password" class="form-control" name="userPwChk" placeholder="패스워드 확인" /> 
+						<input type="password" class="form-control" id="userPw" name="userPw" placeholder="패스워드" />
+						<br>
+						<input type="password" class="form-control" id="userPwChk" name="userPwChk" placeholder="패스워드 확인" />
+						<button id="toggle-password" type="button">비밀번호 보이기</button>
+						<br>
+						<div id="pwCheckMsg"></div>
 						<br>
 
 					<!-- 전화번호 -->
@@ -130,16 +133,44 @@ window.onload = function(){
 document.getElementById('dNow').max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
 
 /* 비번 동일 확인용 */
-const submitBtn = document.getElementById('submitBtn');
+const userPw = document.getElementsByName('userPw')[0];
+const userPwChk = document.getElementsByName('userPwChk')[0];
+const pwCheckMsg = document.getElementById('pwCheckMsg');
 
-submitBtn.addEventListener('click', (event) => {
-   if (userPw.value !== userPwChk.value) {
-     alert('비밀번호가 다릅니다.');
-     event.preventDefault(); // 기본 동작 취소
-   }
-   else {
-     document.querySelector('form').submit(); // 폼 제출
-   }
+function checkPasswords() {
+    const password = userPw.value;
+    const passwordConfirmation = userPwChk.value;
+
+    if (passwordConfirmation.length === 0) {
+        pwCheckMsg.innerText = '';
+        return;
+    }
+
+    if (password !== passwordConfirmation) {
+        pwCheckMsg.innerText = '비밀번호가 다릅니다.';
+    } else {
+        pwCheckMsg.innerText = '비밀번호가 같습니다.';
+    }
+}
+
+userPw.addEventListener('input', checkPasswords);
+userPwChk.addEventListener('input', checkPasswords);
+
+/* 비번 보이기 */
+const passwordInput = document.getElementById('userPw');
+const passwordConfirmInput = document.getElementById('userPwChk');
+const toggleButton = document.getElementById('toggle-password');
+
+toggleButton.addEventListener('click', function() {
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        passwordConfirmInput.type = 'text';
+        toggleButton.textContent = '비밀번호 숨기기';
+    } else {
+        passwordInput.type = 'password';
+        passwordConfirmInput.type = 'password';
+        toggleButton.textContent = '비밀번호 보이기';
+    }
 });
 
 /* 아이디 중복 확인 */
@@ -164,20 +195,31 @@ function checkUserId() {
 
 /* 중복확인을 하지 않거나 사용중인 아이디로 가입하려고 했을 경우 경고메시지 표시 */
 function submitForm() {
-    var userId = document.getElementById("userId").value;
-    var userIdCheckMsg = document.getElementById("userIdCheckMsg").innerHTML;
-    if (userIdCheckMsg.trim() === "이미 사용 중인 아이디입니다.") {
-        alert("아이디를 다시 입력해주세요.");
-        return;
-    }
-    // 중복확인을 하지 않은 경우
-    if (userIdCheckMsg.trim() === "") {
-        alert("아이디 중복확인을 해주세요.");
-        return;
-    }
-    // 회원가입 처리 코드
+  var userId = document.getElementById("userId").value;
+  var userIdCheckMsg = document.getElementById("userIdCheckMsg").innerHTML;
+  var passwordConfirmationMessage = document.getElementById("pwCheckMsg").innerText;
+
+  if (userIdCheckMsg.trim() === "이미 사용 중인 아이디입니다.") {
+    alert("아이디를 다시 입력해주세요.");
+    return;
+  }
+  
+  // 중복확인을 하지 않은 경우
+  if (userIdCheckMsg.trim() === "") {
+    alert("아이디 중복확인을 해주세요.");
+    return;
+  }
+
+  // 비밀번호가 같은 경우에만 회원가입 처리 코드를 실행합니다.
+  if (passwordConfirmationMessage.trim() === "비밀번호가 같습니다.") {
     document.forms[0].submit();
+  } else {
+    alert("비밀번호가 일치여부를 확인해주세요");
+  }
 }
+
+
+
 
 </script>
 
