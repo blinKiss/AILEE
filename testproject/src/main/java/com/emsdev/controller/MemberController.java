@@ -8,18 +8,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.emsdev.service.testService;
 
 @Controller
-public class HomeController {
+public class MemberController {
 	
 	@Autowired
 	private testService testsv;
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
+	@RequestMapping(value="member/memlist", method=RequestMethod.GET)
     public String urlTest() {
-     
-		testsv.showTotal();
-		
 
-        return "home/homeView";   
+        return "member/memlist"; 
     }
 
 }

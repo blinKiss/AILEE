@@ -13,6 +13,7 @@ public interface UserMapper {
 	
 	// 권한 등록
 	public int insertAuth(UserAuth userAuth) throws Exception;
-	
 
+    // 아이디 중복 확인
+    public int checkUserId(String userId) throws Exception;
 }

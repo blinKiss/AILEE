@@ -7,10 +7,10 @@
 	<!-- 회원 등록 -->
 	<insert id="join">
 		INSERT INTO users (user_no, user_id, user_pw, name, email, nickname, birthday, 
-		address, address_detail, gender)
+		address, address_detail, gender, adm)
 		
 		VALUES (SEQ_USERS.nextval, #{userId}, #{userPw}, #{name}, #{email}, #{nickname}, 
-		#{birthday}, #{address}, #{address_detail}, #{gender})
+		#{birthday}, #{address}, #{addressDetail}, #{gender}, #{adm})
 	</insert>
 
 	<!-- 권한 등록 -->
@@ -19,6 +19,10 @@
 		VALUES (SEQ_USER_AUTH.nextval, #{userId}, #{auth})
 	</insert>
 	
+	<!-- 아이디 중복 확인 -->
+    <select id="checkUserId" resultType="int">
+        SELECT COUNT(*) FROM users WHERE user_id = #{userId}
+    </select>
 	
 </mapper>
 

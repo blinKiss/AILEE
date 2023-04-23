@@ -31,7 +31,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
-
+	
+	
 	@Override
 	public int join(Users user) throws Exception {
 		
@@ -50,6 +51,7 @@ public class UserServiceImpl implements UserService {
 			userAuth.setAuth("ROLE_USER");		
 			mapper.insertAuth(userAuth);		// 권한 등록
 		}
+		
 		
 		return result;
 	}
@@ -80,6 +82,7 @@ public class UserServiceImpl implements UserService {
 		
 		return session;
 	}
+	
 	
 
 }

@@ -16,9 +16,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team2.domain.Users;
+import com.team2.mapper.UserMapper;
 import com.team2.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -48,6 +51,11 @@ public class UserController {
 	public String admin() {
 		return "/admin/index";
 	}
+//	public String admin(Model model) {
+//	    int adm = 1; // 혹은 DB에서 조회한 값 등
+//	    model.addAttribute("adm", adm);
+//	    return "/admin/index";
+//	}
 	
 	// 로그인 페이지 - /auth/login
 	@GetMapping("/auth/login")
@@ -78,6 +86,20 @@ public class UserController {
 		return "/auth/join";
 	}
 	
+	// 아이디 중복 확인
+	@Autowired
+	private UserMapper userMapper;
+
+	@GetMapping("/checkUserId")
+	@ResponseBody
+	public String checkUserId(@RequestParam("userId") String userId) throws Exception {
+	    int result = userMapper.checkUserId(userId);
+	    if (result == 1) {
+	        return "fail";
+	    } else {
+	        return "success";
+	    }
+	}
 	
 	// 회원 가입 처리 	- /auth/join
 	@PostMapping("/auth/join")
@@ -108,7 +130,7 @@ public class UserController {
 		return "/auth/success";
 	}
 	
-	
+
 
 }
 

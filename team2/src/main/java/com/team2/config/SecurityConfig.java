@@ -52,14 +52,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter  {
 			// hasAnyRole("USER", "ADMIN")	- 여러 권한에 대하여 허용
 			// hasRole("ADMIN")				- 단일 권한에 대하여 허용
 			.antMatchers("/").permitAll()			// "/" 경로는 모든 사용자에 허용
+			
+			// 아이디 중복 확인
+			.antMatchers("/checkUserId").permitAll()
+			
 			.antMatchers("/board/**").permitAll()
 			.antMatchers("/auth/**").permitAll()
 			.antMatchers("/user/**").hasAnyRole("USER", "ADMIN")	
 			.antMatchers("/admin/**").hasRole("ADMIN")
 			.anyRequest().authenticated()			// 요청에 대하여 인증된 사용자만 허용
 			;
-		
-		
+
 		// 로그인 설정
 		http.formLogin()		
 			.loginPage("/auth/login")			// 사용자 지정 로그인 페이지 경로 (기본 경로 : /login)

@@ -61,11 +61,11 @@ public class NoticeController {
 	public String list(Model model, Page page) throws Exception {
 		
 		List<Notice> noticeList = service.list(page);
-		
+		int adm = 1;
 		log.info("page : " + page);
 		model.addAttribute("page", page);
 		model.addAttribute("noticeList", noticeList);
-		
+		model.addAttribute("adm", adm);
 		return "/notice/list";		// notice/list.html
 	}
 	
@@ -93,7 +93,7 @@ public class NoticeController {
 	 */
 	@GetMapping("/notice/insert")
 	// @PreAuthorize("hasRole('USER')")
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	public String insertForm(Principal principal, Model model) {
 		
 		String userId = principal.getName();	// 아이디
@@ -113,25 +113,25 @@ public class NoticeController {
 	 * @throws Exception 
 	 */
 	@PostMapping("/notice/insert")
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	public String insert(Notice notice) throws Exception {
 		//  MultipartFile : 전송된 파일데이터를 다루는 인터페이스
 		
-		MultipartFile[] files = notice.getFiles();
-		
-		if( files != null || files.length == 0 ) {
-			// 요청된 첨부파일 확인
-			for (MultipartFile file : files) {
-				String fileName = file.getOriginalFilename();		// 파일 명
-				String contentType = file.getContentType();			// 파일 타입(확장자)
-				long size = file.getSize();							// 용량
-				byte[] fileData = file.getBytes();					// 파일 데이터
-				
-				log.info("fileName : " + fileName);
-				log.info("contentType : " + contentType);
-				log.info("size : " + size);
-			}
-		}
+//		MultipartFile[] files = notice.getFiles();
+//		
+//		if( files != null || files.length == 0 ) {
+//			// 요청된 첨부파일 확인
+//			for (MultipartFile file : files) {
+//				String fileName = file.getOriginalFilename();		// 파일 명
+//				String contentType = file.getContentType();			// 파일 타입(확장자)
+//				long size = file.getSize();							// 용량
+//				byte[] fileData = file.getBytes();					// 파일 데이터
+//				
+//				log.info("fileName : " + fileName);
+//				log.info("contentType : " + contentType);
+//				log.info("size : " + size);
+//			}
+//		}
 		
 		int result = service.insert(notice);
 		
@@ -175,15 +175,15 @@ public class NoticeController {
 		}
 		
 		// 파일 목록 조회
-		file.setParentTable("notice");
-		file.setParentNo(ntNo);
-		List<Files> fileList = fileService.listByParentNo( file );
+//		file.setParentTable("notice");
+//		file.setParentNo(ntNo);
+//		List<Files> fileList = fileService.listByParentNo( file );
 		
 		
 		model.addAttribute("ntId", ntId);		
 		model.addAttribute("ntNo", ntNo);
 		model.addAttribute("notice", notice);
-		model.addAttribute("fileList", fileList);
+//		model.addAttribute("fileList", fileList);
 		return "/notice/read";
 	}
 	
@@ -206,7 +206,7 @@ public class NoticeController {
 	 * @throws Exception 
 	 */
 	@GetMapping(path = "/notice/update", params = "ntNo")
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	public String updateForm(Model model, int ntNo, Principal principal) throws Exception {
 		// 게시글 번호로 게시글 정보를 조회
 		System.out.println("게시글 조회(수정화면)...");
@@ -276,7 +276,7 @@ public class NoticeController {
 	 * @throws Exception 
 	 */
 	@PostMapping("/notice/update")
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	public String updatePost(Notice notice, Principal principal) throws Exception {
 		// 요청 파라미터명과 일치하는 변수명을 가지고 있는 객체를 사용하여 여러 파라미터를 가져올 수 있다.
 		int ntNo = notice.getNtNo();
@@ -330,7 +330,7 @@ public class NoticeController {
 	 * @throws Exception 
 	 */
 	@PostMapping("/notice/delete")
-	@PreAuthorize("hasAnyRole('ADMIN')")
+	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
 	public String deletePost(int ntNo, Principal principal) throws Exception {
 		log.info("게시글 삭제...");
 		

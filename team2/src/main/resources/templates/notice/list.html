@@ -18,14 +18,22 @@
 
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 	  <div class="container-fluid">
-	    <a class="navbar-brand" href="/">메인화면</a>
+	    <a class="navbar-brand" href="/">다팜</a>
 	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 	      <span class="navbar-toggler-icon"></span>
 	    </button>
+	    
 	    <div class="collapse navbar-collapse" id="navbarCollapse">
 	      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+	      <li class="nav-item">
+	          <a class="nav-link active" href="/notice/list">공지</a>
+	        </li>
+	        
 	        <li class="nav-item">
-	          <a class="nav-link active" aria-current="page" href="/notice/list">게시판</a>
+	          <a class="nav-link" aria-current="page" href="/product/list">상품목록</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="/board/list">게시판</a>
 	        </li>
 	      </ul>
 	      
@@ -54,7 +62,7 @@
 	
 	
 	<div class="container mt-5 py-5">
-		<h1 class="text-center py-5">게시글 목록</h1>
+		<h1 class="text-center py-5">공지 사항</h1>
 		
 		<div class="d-flex justify-content-between py-3">
 			<div class="item d-flex">
@@ -63,10 +71,11 @@
 					<button type="submit">검색</button>
 				</form>
 			</div>
-				
-			<div class="item">
-				<a href="/notice/insert" class="btn btn-primary">글쓰기</a>
-			</div>	
+			<th:block th:if="${adm == 1}">	
+				<div class="item">
+					<a href="/notice/insert" class="btn btn-primary">글쓰기</a>
+				</div>
+			</th:block>	
 		</div>
 		
 		

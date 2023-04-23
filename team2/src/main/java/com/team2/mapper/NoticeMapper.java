@@ -44,6 +44,8 @@ public interface NoticeMapper {
 
 	// [페이지] 게시글 목록
 	public List<Notice> listWithPage(Page page) throws Exception;
+	
+	
 
 }
 

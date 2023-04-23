@@ -13,4 +13,5 @@ public interface UserService {
 	// 토큰 인증
 	public HttpSession tokenAuthenticaion(Users user, HttpServletRequest request) throws Exception;
 	
+	
 }

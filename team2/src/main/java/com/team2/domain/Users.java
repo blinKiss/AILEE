@@ -23,7 +23,7 @@ public class Users {
 	private LocalDateTime updDate;	// 수정일자
 	private String birthday;		// 생년월일
 	private String address;			// 주소
-	private String address_detail;	// 상세주소
+	private String addressDetail;	// 상세주소
 	private String gender;			// 성별
 	private int adm;				// 관리자
 	
