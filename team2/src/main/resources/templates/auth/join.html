@@ -177,6 +177,10 @@ toggleButton.addEventListener('click', function() {
 function checkUserId() {
     var userId = document.getElementById("userId").value;
     var xhr = new XMLHttpRequest();
+    if (userId === "") {
+        userIdCheckMsg.innerText = "아이디를 입력하세요.";
+        return;
+    }
     xhr.open('GET', '/checkUserId?userId=' + userId, true);
     xhr.onload = function () {
         if (xhr.status === 200) {
@@ -193,11 +197,16 @@ function checkUserId() {
     xhr.send();
 }
 
-/* 중복확인을 하지 않거나 사용중인 아이디로 가입하려고 했을 경우 경고메시지 표시 */
+/* 중복확인을 하지 않거나 사용중인 아이디, 공백으로 가입하려고 했을 경우 경고메시지 표시 */
 function submitForm() {
   var userId = document.getElementById("userId").value;
   var userIdCheckMsg = document.getElementById("userIdCheckMsg").innerHTML;
   var passwordConfirmationMessage = document.getElementById("pwCheckMsg").innerText;
+
+  if (userId.trim() === "") {
+    alert("아이디를 입력하세요.");
+    return;
+  }
 
   if (userIdCheckMsg.trim() === "이미 사용 중인 아이디입니다.") {
     alert("아이디를 다시 입력해주세요.");
@@ -217,7 +226,6 @@ function submitForm() {
     alert("비밀번호가 일치여부를 확인해주세요");
   }
 }
-
 
 
 
