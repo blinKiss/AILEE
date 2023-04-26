@@ -12,7 +12,7 @@ public class MusicUsers {
 	private String userPwChk;
 	private String name;
 	private String gender;
-	private Number old;
+	private String age;
 	private int enabled;
 	private LocalDateTime regDate;
 	private LocalDateTime updDate;

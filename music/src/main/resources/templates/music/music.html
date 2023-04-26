@@ -39,8 +39,9 @@
     .container {
       position: relative;
       margin-top: 5rem;
-      margin-bottom: 5rem;
-      margin-left: 5rem;
+      margin-bottom: 3rem;
+/*       margin-left: 5rem; */
+      margin : center;
       display: flex;
       flex-wrap: wrap;
       border: 1px solid #e5e5e5;
@@ -112,21 +113,10 @@ document.querySelectorAll('a').forEach(function(link) {
          container.appendChild(card);
        });
        
-       
-       
 
   });
 });
 
-// //music 데이터 예시
-// var music = [
-//   {songName: '밤편지', artist: '아이유', genre: '국내_발라드', albumImg: 'https://cdnimg.melon.co.kr/cm/album/images/100/47/890/10047890_500.jpg', youtube: 'https://www.youtube.com/watch?v=BzYnNdJhZQw'},
-//   {songName: '밤편지', artist: '아이유', genre: '국내_발라드', albumImg: 'https://cdnimg.melon.co.kr/cm/album/images/100/47/890/10047890_500.jpg', youtube: 'https://www.youtube.com/watch?v=BzYnNdJhZQw'},
-//   {songName: '밤편지', artist: '아이유', genre: '국내_발라드', albumImg: 'https://cdnimg.melon.co.kr/cm/album/images/100/47/890/10047890_500.jpg', youtube: 'https://www.youtube.com/watch?v=BzYnNdJhZQw'},
-//   {songName: '밤편지', artist: '아이유', genre: '국내_발라드', albumImg: 'https://cdnimg.melon.co.kr/cm/album/images/100/47/890/10047890_500.jpg', youtube: 'https://www.youtube.com/watch?v=BzYnNdJhZQw'},
-//   {songName: '밤편지', artist: '아이유', genre: '국내_발라드', albumImg: 'https://cdnimg.melon.co.kr/cm/album/images/100/47/890/10047890_500.jpg', youtube: 'https://www.youtube.com/watch?v=BzYnNdJhZQw'},
-//   {songName: '밤편지', artist: '아이유', genre: '국내_발라드', albumImg: 'https://cdnimg.melon.co.kr/cm/album/images/100/47/890/10047890_500.jpg', youtube: 'https://www.youtube.com/watch?v=BzYnNdJhZQw'},
-// ];
 
 </script>
 
@@ -159,14 +149,17 @@ document.querySelectorAll('a').forEach(function(link) {
     </th:block>
   </nav>
 
+  <h2 style="text-align:center;"> 장르를 누르면 무작위 추천 </h2>	
+
   <div class="container">
         <div>
             <div>
                 <span>종합</span>
                     <ul>
-                        <li><a href="#total_genre"><span>장르종합</span></a></li>
-                        <li><a href="#total_kor"><span>국내종합</span></a></li>
-                        <li><a href="#total_foreign"><span>해외종합</span></a></li>
+                    	<li><a href="music"><span>아무거나</span></a></li>
+                      	<li><a href="#" onclick="loadMusic('장르종합');"><span>장르종합</span></a></li>
+	                    <li><a href="#" onclick="loadMusic('국내종합');"><span>국내종합</span></a></li>
+	                    <li><a href="#" onclick="loadMusic('해외종합');"><span>해외종합</span></a></li>
                     </ul>
             </div>
 
@@ -174,14 +167,14 @@ document.querySelectorAll('a').forEach(function(link) {
                 <span>한국대중음악</span>
                 
                     <ul>
-                        <li><a href="#kor_ballad"><span>발라드</span></a></li>
-                        <li><a href="#kor_dance"><span>댄스</span></a></li>
-                        <li><a href="#kor_rap_hiphop"><span>랩/힙합</span></a></li>
-                        <li><a href="#kor_rnb_soul"><span>R&amp;B/Soul</span></a></li>
-                        <li><a href="#kor_indie"><span>인디음악</span></a></li>
-                        <li><a href="#kor_rock_metal"><span>록/메탈</span></a></li>
-                        <li><a href="#kor_trot"><span>트로트</span></a></li>
-                        <li><a href="#kor_folk_blues"><span>포크/블루스</span></a></li>
+						<li><a href="#" onclick="loadMusic('국내_발라드');"><span>발라드</span></a></li>
+                        <li><a href="#" onclick="loadMusic('국내_댄스');"><span>댄스</span></a></li>
+                        <li><a href="#" onclick="loadMusic('국내_랩／힙합');"><span>랩/힙합</span></a></li>
+                        <li><a href="#" onclick="loadMusic('국내_R&B／Soul');"><span>R&amp;B/Soul</span></a></li>
+                        <li><a href="#" onclick="loadMusic('국내_인디음악');"><span>인디음악</span></a></li>
+                        <li><a href="#" onclick="loadMusic('국내_록／메탈');"><span>록/메탈</span></a></li>
+                        <li><a href="#" onclick="loadMusic('국내_트로트');"><span>트로트</span></a></li>
+                        <li><a href="#" onclick="loadMusic('국내_포크／블루스');"><span>포크/블루스</span></a></li>
                     </ul>
             </div>    
 
@@ -189,12 +182,12 @@ document.querySelectorAll('a').forEach(function(link) {
                 <span>해외POP음악</span>
                 
                     <ul>
-                        <li><a href="#foreign_pop"><span>POP</span></a></li>
-                        <li><a href="#foreign_rock_metal"><span>록/메탈</span></a></li>
-                        <li><a href="#foreign_elec"><span>일렉트로니카</span></a></li>
-                        <li><a href="#foreign_rap_hiphop"><span>랩/힙합</span></a></li>
-                        <li><a href="#foreign_rnb_soul"><span>R&amp;B/Soul</span></a></li>
-                        <li><a href="#foreign_folk_blues_country"><span>포크/블루스/컨트리</span></a></li>
+                        <li><a href="#" onclick="loadMusic('해외_POP');"><span>POP</span></a></li>
+                        <li><a href="#" onclick="loadMusic('해외_록／메탈');"><span>록/메탈</span></a></li>
+                        <li><a href="#" onclick="loadMusic('해외_일렉트로니카');"><span>일렉트로니카</span></a></li>
+                        <li><a href="#" onclick="loadMusic('해외_랩／힙합');"><span>랩/힙합</span></a></li>
+                        <li><a href="#" onclick="loadMusic('해외_R&B／Soul');"><span>R&amp;B/Soul</span></a></li>
+                        <li><a href="#" onclick="loadMusic('해외_포크／블루스／컨트리');"><span>포크/블루스/컨트리</span></a></li>
                     </ul>
             </div>    
 
@@ -202,34 +195,45 @@ document.querySelectorAll('a').forEach(function(link) {
                 <span>그외인기장르</span>
                 
                     <ul>
-                        <li><a href="#other_ost"><span>OST</span></a></li>
-                        <li><a href="#other_jazz"><span>재즈</span></a></li>
-                        <li><a href="#other_newage"><span>뉴에이지</span></a></li>
-                        <li><a href="#other_jpop"><span>J-pop</span></a></li>
-                        <li><a href="#other_worldmusic"><span>월드뮤직</span></a></li>
-                        <li><a href="#other_ccm"><span>CCM</span></a></li>
-                        <li><a href="#other_kids"><span>어린이/태교</span></a></li>
-                        <li><a href="#other_religion"><span>종교음악</span></a></li>
-                        <li><a href="#other_gugak"><span>국악</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_OST');"><span>OST</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_재즈');"><span>재즈</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_뉴에이지');"><span>뉴에이지</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_J-pop');"><span>J-pop</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_월드뮤직');"><span>월드뮤직</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_CCM');"><span>CCM</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_어린이／태교');"><span>어린이/태교</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_종교음악');"><span>종교음악</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_국악');"><span>국악</span></a></li>
                     </ul>
             </div>    
         </div>                
     </div>
-    
-   <div class="container-fluid" id="row2">
-     <div class="row" align="center">
-       <div class="col-md-4 mb-4" th:each="music : ${musicList}">
-         <div class="card" style="width: 22rem;">
-           <img th:src="${music.albumImg}" class="card-img -top"/>
-           <div class="card-body opacity-75">
-             <h5 class="card-title"><a th:href="${music.youtube}" target="_blank" th:text="${music.songName}"></a></h5>
-             <p class="card-text" th:text="${music.artist}"></p>
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
+      <h4 style="text-align:center;"> 곡 제목을 누르면 유튜브로 이동 </h4>
+      <br>
+
+	<div id="music-container" th:include="music/musicByGenre :: musicByGenreContainer"></div>
+
 
 </body>
 
+<script>
+// 장르 클릭 시 무작위로 6개 표시
+function loadMusic(genre) {
+	  // 아래쪽 컨테이너에 해당하는 HTML 요소를 가져옵니다.
+	  var container = document.getElementById("music-container");
+	  
+	  // AJAX 요청을 보내어 서버에서 데이터를 가져옵니다.
+	  var xhr = new XMLHttpRequest();
+	  xhr.onreadystatechange = function() {
+	    if (xhr.readyState === XMLHttpRequest.DONE) {
+	      if (xhr.status === 200) {
+	        container.innerHTML = xhr.responseText;
+	      }
+	    }
+	  };
+	  xhr.open("GET", "/music/genre/" + encodeURIComponent(genre), true);
+	  xhr.send();
+	}
+
+</script>
 </html>

@@ -5,9 +5,9 @@
 <mapper namespace="com.team1.mapper.MusicUserMapper">
 	
 	<!-- 회원 등록 -->
-	<insert id="join">
-		INSERT INTO music_users ( user_no, user_id, user_pw, name, gender, old)
-		VALUES ( SEQ_USER.nextval, #{userId}, #{userPw}, #{name}, #{gender}, #{old})
+	<insert id="join" parameterType="com.team1.domain.MusicUsers">
+		INSERT INTO music_users ( user_no, user_id, user_pw, name, gender, age)
+		VALUES ( SEQ_USER.nextval, #{userId}, #{userPw}, #{name}, #{gender}, #{age})
 	</insert>
 	
 	

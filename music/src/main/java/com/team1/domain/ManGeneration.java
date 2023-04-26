@@ -6,7 +6,7 @@ import lombok.Data;
 public class ManGeneration {
 
 	private String gender;
-	private String generation;
+	private int generation;
 	private String artist;
 	private String songName;
 	private String albumName;

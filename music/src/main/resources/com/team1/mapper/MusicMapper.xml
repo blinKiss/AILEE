@@ -13,6 +13,13 @@
 	ORDER BY dbms_random.value() fetch first 6 rows only
 	</select>
 	
+	
+	<select id="selectMusicByGenre" resultType="Music">
+		SELECT * FROM MUSIC
+		WHERE GENRE = #{genre}
+		ORDER BY dbms_random.value() fetch first 6 rows only
+	</select>
+	
 <!-- 	<select id="selectMusicByGenre" resultType="Music"> -->
 <!--     SELECT * FROM music -->
 <!--     WHERE genre = #{genre} -->
