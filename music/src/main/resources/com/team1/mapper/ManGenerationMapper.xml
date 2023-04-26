@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.team1.mapper.ManGenerationMapper">
+	<select id="list" resultType="ManGeneration">
+	SELECT * 
+	FROM Man_Generation 
+<!-- 	where 컬럼명 = '값'  -->
+	ORDER BY dbms_random.value() fetch first 6 rows only
+	</select>
+</mapper>

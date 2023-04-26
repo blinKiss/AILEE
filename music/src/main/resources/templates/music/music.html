@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>장르 페이지</title>
+<!-- css -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+ <style>
+ .image {
+    position: relative;
+  }
+   .card-body {
+    position: absolute;
+    top: 88%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+    color: white;
+    background-color: black;
+    width: 100%;
+    height: 85px;
+  }
+  
+  .card-title a {
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    width: 270px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+  }
+
+  #row2 {
+    position: relative;
+    top: 20px;
+  }
+ 
+    .container {
+      position: relative;
+      margin-top: 5rem;
+      margin-bottom: 5rem;
+      margin-left: 5rem;
+      display: flex;
+      flex-wrap: wrap;
+      border: 1px solid #e5e5e5;
+      width: 1000px;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+    }
+      
+    li {
+    margin-right: 10px;
+    }
+
+    .container > div > div {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .container > div > div > span {
+        display: inline-block;
+        width: calc(10rem - 1rem);
+    }
+
+    a{
+      color:#1a1a1a;
+      text-decoration: none;
+   }
+</style>
+<script>
+// 링크 클릭 시 이벤트 등록
+document.querySelectorAll('a').forEach(function(link) {
+  link.addEventListener('click', function(event) {
+     
+     alert(1111);
+     
+       event.preventDefault(); // 링크의 기본 동작 방지
+       
+       // 링크의 href 속성에서 genre 값을 가져옴
+       var genre = link.getAttribute('href').substring(1);
+       console.log(genre);
+       
+       // music table에서 genre 값이 일치하는 데이터를 찾아 랜덤으로 6개 가져옴
+       var musicList = music.filter(function(item) {
+         return item.genre === genre;
+       }).sort(function() { // 랜덤으로 정렬
+         return 0.5 - Math.random();
+       }).slice(0, 6); // 6개까지만 가져옴
+       
+       // 가져온 데이터를 이용해 카드를 생성하여 출력
+       var container = document.getElementById('row2');
+       container.innerHTML = ''; // 이전에 생성된 카드 제거
+       
+       musicList.forEach(function(item) {
+         var card = document.createElement('div');
+         card.className = 'col-md-4 mb-4';
+         card.innerHTML = `
+           <div class="card" style="width: 22rem;">
+             <img src="${item.albumImg}" class="card-img-top"/>
+             <div class="card-body opacity-75">
+               <h5 class="card-title"><a href="${item.youtube}" target="_blank">${item.songName}</a></h5>
+               <p class="card-text">${item.artist}</p>
+             </div>
+           </div>
+         `;
+         container.appendChild(card);
+       });
+       
+       
+       
+
+  });
+});
+
+// //music 데이터 예시
+// var music = [
+//   {songName: '밤편지', artist: '아이유', genre: '국내_발라드', albumImg: 'https://cdnimg.melon.co.kr/cm/album/images/100/47/890/10047890_500.jpg', youtube: 'https://www.youtube.com/watch?v=BzYnNdJhZQw'},
+//   {songName: '밤편지', artist: '아이유', genre: '국내_발라드', albumImg: 'https://cdnimg.melon.co.kr/cm/album/images/100/47/890/10047890_500.jpg', youtube: 'https://www.youtube.com/watch?v=BzYnNdJhZQw'},
+//   {songName: '밤편지', artist: '아이유', genre: '국내_발라드', albumImg: 'https://cdnimg.melon.co.kr/cm/album/images/100/47/890/10047890_500.jpg', youtube: 'https://www.youtube.com/watch?v=BzYnNdJhZQw'},
+//   {songName: '밤편지', artist: '아이유', genre: '국내_발라드', albumImg: 'https://cdnimg.melon.co.kr/cm/album/images/100/47/890/10047890_500.jpg', youtube: 'https://www.youtube.com/watch?v=BzYnNdJhZQw'},
+//   {songName: '밤편지', artist: '아이유', genre: '국내_발라드', albumImg: 'https://cdnimg.melon.co.kr/cm/album/images/100/47/890/10047890_500.jpg', youtube: 'https://www.youtube.com/watch?v=BzYnNdJhZQw'},
+//   {songName: '밤편지', artist: '아이유', genre: '국내_발라드', albumImg: 'https://cdnimg.melon.co.kr/cm/album/images/100/47/890/10047890_500.jpg', youtube: 'https://www.youtube.com/watch?v=BzYnNdJhZQw'},
+// ];
+
+</script>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed_top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/" style="font-size:45px;">Music</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <nav class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size:25px; padding:30px;">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/music/music">Music</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/artist/artist">Artist</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/generation/womanGeneration">Generation</a>
+          </li>
+        </ul>
+    </div>
+    <th:block sec:authorize="isAuthenticated()">
+      <span sec:authentication="principal.username" class="text-white"></span>
+      <button type="button" onclick="location.href='/myPage/myPage'" class="btn btn-primary" style="width:160px">마이페이지</button>
+    </th:block>
+  </nav>
+
+  <div class="container">
+        <div>
+            <div>
+                <span>종합</span>
+                    <ul>
+                        <li><a href="#total_genre"><span>장르종합</span></a></li>
+                        <li><a href="#total_kor"><span>국내종합</span></a></li>
+                        <li><a href="#total_foreign"><span>해외종합</span></a></li>
+                    </ul>
+            </div>
+
+            <div>
+                <span>한국대중음악</span>
+                
+                    <ul>
+                        <li><a href="#kor_ballad"><span>발라드</span></a></li>
+                        <li><a href="#kor_dance"><span>댄스</span></a></li>
+                        <li><a href="#kor_rap_hiphop"><span>랩/힙합</span></a></li>
+                        <li><a href="#kor_rnb_soul"><span>R&amp;B/Soul</span></a></li>
+                        <li><a href="#kor_indie"><span>인디음악</span></a></li>
+                        <li><a href="#kor_rock_metal"><span>록/메탈</span></a></li>
+                        <li><a href="#kor_trot"><span>트로트</span></a></li>
+                        <li><a href="#kor_folk_blues"><span>포크/블루스</span></a></li>
+                    </ul>
+            </div>    
+
+            <div>
+                <span>해외POP음악</span>
+                
+                    <ul>
+                        <li><a href="#foreign_pop"><span>POP</span></a></li>
+                        <li><a href="#foreign_rock_metal"><span>록/메탈</span></a></li>
+                        <li><a href="#foreign_elec"><span>일렉트로니카</span></a></li>
+                        <li><a href="#foreign_rap_hiphop"><span>랩/힙합</span></a></li>
+                        <li><a href="#foreign_rnb_soul"><span>R&amp;B/Soul</span></a></li>
+                        <li><a href="#foreign_folk_blues_country"><span>포크/블루스/컨트리</span></a></li>
+                    </ul>
+            </div>    
+
+            <div>
+                <span>그외인기장르</span>
+                
+                    <ul>
+                        <li><a href="#other_ost"><span>OST</span></a></li>
+                        <li><a href="#other_jazz"><span>재즈</span></a></li>
+                        <li><a href="#other_newage"><span>뉴에이지</span></a></li>
+                        <li><a href="#other_jpop"><span>J-pop</span></a></li>
+                        <li><a href="#other_worldmusic"><span>월드뮤직</span></a></li>
+                        <li><a href="#other_ccm"><span>CCM</span></a></li>
+                        <li><a href="#other_kids"><span>어린이/태교</span></a></li>
+                        <li><a href="#other_religion"><span>종교음악</span></a></li>
+                        <li><a href="#other_gugak"><span>국악</span></a></li>
+                    </ul>
+            </div>    
+        </div>                
+    </div>
+    
+   <div class="container-fluid" id="row2">
+     <div class="row" align="center">
+       <div class="col-md-4 mb-4" th:each="music : ${musicList}">
+         <div class="card" style="width: 22rem;">
+           <img th:src="${music.albumImg}" class="card-img -top"/>
+           <div class="card-body opacity-75">
+             <h5 class="card-title"><a th:href="${music.youtube}" target="_blank" th:text="${music.songName}"></a></h5>
+             <p class="card-text" th:text="${music.artist}"></p>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+
+</body>
+
+</html>

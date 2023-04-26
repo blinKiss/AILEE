@@ -60,24 +60,24 @@
 					<input type="text" class="form-control" name="name" placeholder="이름" /> <br> 
 					
 					<!-- 이메일 -->
-					<input type="text" class="form-control" name="email" placeholder="이메일" /> <br>
+<!-- 					<input type="text" class="form-control" name="email" placeholder="이메일" /> <br> -->
 
 					<!-- 닉네임 -->
-					<input type="text" class="form-control" name="nickname" placeholder="닉네임" /> <br>
+<!-- 					<input type="text" class="form-control" name="nickname" placeholder="닉네임" /> <br> -->
 
 					<!-- 생년월일 -->
 <!-- 				<input type="text" class="form-control" name="birthday" -->
 <!-- 						placeholder="생년월일 (예) 990101" maxlength=6 -->
 <!-- 						onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" /> <br> -->
-					<input name="birthday" type="date" class="form-control" min="1900-01-01" id="dNow"> <br>
+<!-- 					<input name="birthday" type="date" class="form-control" min="1900-01-01" id="dNow"> <br> -->
                
 					<!-- 주소창-->
-					<input class="form-control" type="text" id="address_kakao"
-						name="address" placeholder='주소' readonly /> <br>
+<!-- 					<input class="form-control" type="text" id="address_kakao" -->
+<!-- 						name="address" placeholder='주소' readonly /> <br> -->
 
 					<!-- 상세주소 -->
-					<input class="form-control" type="text" name="addressDetail"
-						placeholder='상세주소' /> <br>
+<!-- 					<input class="form-control" type="text" name="addressDetail" -->
+<!-- 						placeholder='상세주소' /> <br> -->
 					
 					<!-- 성별 체크박스로 넣기 -->
 					<select class="form-control" name='gender' id='gender'>
@@ -87,11 +87,11 @@
 					</select> <br>
 					
 					<!-- 권한 -->	
-					<select type="number" class="form-control" name="adm">
-						<option value="select" selected disabled>권한 선택(관리자 생성 후 주석)</option>
-						<option value=0>사용자</option>
-						<option value=1>관리자</option>
-					</select> <br>
+<!-- 					<select type="number" class="form-control" name="adm"> -->
+<!-- 						<option value="select" selected disabled>권한 선택(관리자 생성 후 주석)</option> -->
+<!-- 						<option value=0>사용자</option> -->
+<!-- 						<option value=1>관리자</option> -->
+<!-- 					</select> <br> -->
 <!-- 					<select class="form-control" name="auth"> -->
 <!-- 						<option value="select" selected disabled>권한 선택(관리자 생성 후 주석)</option> -->
 <!-- 						<option value="ROLE_USER">사용자</option> -->
@@ -130,7 +130,6 @@ window.onload = function(){
     });
 }
 
-document.getElementById('dNow').max = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0];
 
 /* 비번 동일 확인용 */
 const userPw = document.getElementsByName('userPw')[0];
