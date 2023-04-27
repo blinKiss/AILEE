@@ -73,6 +73,8 @@
       color:#1a1a1a;
       text-decoration: none;
    }
+   
+
 </style>
 <script>
 // 링크 클릭 시 이벤트 등록
@@ -113,6 +115,7 @@ document.querySelectorAll('a').forEach(function(link) {
          container.appendChild(card);
        });
        
+       
 
   });
 });
@@ -121,37 +124,40 @@ document.querySelectorAll('a').forEach(function(link) {
 </script>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed_top">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/" style="font-size:45px;">Music</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <nav class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size:25px; padding:30px;">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/music/music">Music</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/artist/artist">Artist</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/generation/womanGeneration">Generation</a>
-          </li>
-        </ul>
-    </div>
-    <th:block sec:authorize="isAuthenticated()">
-      <span sec:authentication="principal.username" class="text-white"></span>
-      <button type="button" onclick="location.href='/myPage/myPage'" class="btn btn-primary" style="width:160px">마이페이지</button>
-    </th:block>
-  </nav>
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed_top">
+  <div class="container-fluid">
+   <a class="navbar-brand" href="/" style="font-size:45px;">Music</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+  </button>
+   <div class="collapse navbar-collapse" id="navbarSupportedContent" style="font-size:25px; padding:30px;">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+     <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/">Home</a>
+     </li>
+     <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/music/music">Music</a>
+     </li>
+     <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/artist/artist">Artist</a>
+     </li>
+     <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="/generation/generation">Generation</a>
+     </li>
+    </ul>
+   </div>
+  </div>
+  
+ <th:block sec:authorize="isAuthenticated()">
+	<span sec:authentication="principal.username" class="text-white"></span>
+	<button type="button" onclick="location.href='/myPage/myPage'" class="btn btn-primary" style="width:160px">마이페이지</button>
+ </th:block>
 
-  <h2 style="text-align:center;"> 장르를 누르면 무작위 추천 </h2>	
+ </nav>
 
-  <div class="container">
+<!--   <h2 style="text-align:center;"> 장르를 누르면 무작위 추천 </h2>	 -->
+
+  <div class="container" style="width:800px">
         <div>
             <div>
                 <span>종합</span>
@@ -208,7 +214,7 @@ document.querySelectorAll('a').forEach(function(link) {
             </div>    
         </div>                
     </div>
-      <h4 style="text-align:center;"> 곡 제목을 누르면 유튜브로 이동 </h4>
+<!--       <h4 style="text-align:center;"> 곡 제목을 누르면 유튜브로 이동 </h4> -->
       <br>
 
 	<div id="music-container" th:include="music/musicByGenre :: musicByGenreContainer"></div>
@@ -218,10 +224,11 @@ document.querySelectorAll('a').forEach(function(link) {
 
 <script>
 // 장르 클릭 시 무작위로 6개 표시
+
 function loadMusic(genre) {
 	  // 아래쪽 컨테이너에 해당하는 HTML 요소를 가져옵니다.
 	  var container = document.getElementById("music-container");
-	  
+
 	  // AJAX 요청을 보내어 서버에서 데이터를 가져옵니다.
 	  var xhr = new XMLHttpRequest();
 	  xhr.onreadystatechange = function() {
