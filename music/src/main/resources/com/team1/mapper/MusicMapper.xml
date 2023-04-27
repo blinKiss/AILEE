@@ -9,7 +9,6 @@
 	<select id="list" resultType="Music">
 	SELECT * 
 	FROM MUSIC
-	<!-- WHERE genre = '국내종합' -->
 	ORDER BY dbms_random.value() fetch first 6 rows only
 	</select>
 	
@@ -26,4 +25,6 @@
 <!--     ORDER BY dbms_random.value() -->
 <!--     FETCH FIRST 6 ROWS ONLY -->
 <!-- 	</select> -->
+
+
 </mapper>

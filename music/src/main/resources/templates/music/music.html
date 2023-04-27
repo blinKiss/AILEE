@@ -48,80 +48,57 @@
       width: 1000px;
     }
 
-    ul {
-        display: flex;
-        flex-direction: row;
-        list-style: none;
-    }
+	ul {
+	  display: flex;
+	  flex-direction: row;
+	  list-style: none;
+	  justify-content: center; /* 자식 요소들을 수평 중앙으로 정렬 */
+	}
       
     li {
     margin-right: 10px;
     }
 
-    .container > div > div {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-    }
+/*     .container > div > div { */
+/*         display: flex; */
+/*         flex-wrap: wrap; */
+/*         align-items: center; */
+/*     } */
 
     .container > div > div > span {
         display: inline-block;
         width: calc(10rem - 1rem);
+        margin: 0;
     }
 
     a{
-      color:#1a1a1a;
+      color: purple;
       text-decoration: none;
    }
    
+.container > div > div {
+  display: flex;
+  align-items: center;
+}
+
+.container > div > div > ul {
+  margin: 0.5rem;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* .container > div > div > ul > li { */
+/*   margin: 3px; */
+/*   list-style: none; */
+/* } */
+
+
+   
+
 
 </style>
-<script>
-// 링크 클릭 시 이벤트 등록
-document.querySelectorAll('a').forEach(function(link) {
-  link.addEventListener('click', function(event) {
-     
-     alert(1111);
-     
-       event.preventDefault(); // 링크의 기본 동작 방지
-       
-       // 링크의 href 속성에서 genre 값을 가져옴
-       var genre = link.getAttribute('href').substring(1);
-       console.log(genre);
-       
-       // music table에서 genre 값이 일치하는 데이터를 찾아 랜덤으로 6개 가져옴
-       var musicList = music.filter(function(item) {
-         return item.genre === genre;
-       }).sort(function() { // 랜덤으로 정렬
-         return 0.5 - Math.random();
-       }).slice(0, 6); // 6개까지만 가져옴
-       
-       // 가져온 데이터를 이용해 카드를 생성하여 출력
-       var container = document.getElementById('row2');
-       container.innerHTML = ''; // 이전에 생성된 카드 제거
-       
-       musicList.forEach(function(item) {
-         var card = document.createElement('div');
-         card.className = 'col-md-4 mb-4';
-         card.innerHTML = `
-           <div class="card" style="width: 22rem;">
-             <img src="${item.albumImg}" class="card-img-top"/>
-             <div class="card-body opacity-75">
-               <h5 class="card-title"><a href="${item.youtube}" target="_blank">${item.songName}</a></h5>
-               <p class="card-text">${item.artist}</p>
-             </div>
-           </div>
-         `;
-         container.appendChild(card);
-       });
-       
-       
 
-  });
-});
-
-
-</script>
 
 <body>
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed_top">
@@ -161,12 +138,12 @@ document.querySelectorAll('a').forEach(function(link) {
         <div>
             <div>
                 <span>종합</span>
-                    <ul>
+                   <ul>
                     	<li><a href="music"><span>아무거나</span></a></li>
                         <li><a href="#" onclick="loadMusic('장르종합');"><span>장르종합</span></a></li>
 	                    <li><a href="#" onclick="loadMusic('국내종합');"><span>국내종합</span></a></li>
 	                    <li><a href="#" onclick="loadMusic('해외종합');"><span>해외종합</span></a></li>
-                    </ul>
+                   </ul>
             </div>
 
             <div>
@@ -217,8 +194,10 @@ document.querySelectorAll('a').forEach(function(link) {
 <!--       <h4 style="text-align:center;"> 곡 제목을 누르면 유튜브로 이동 </h4> -->
       <br>
 
-	<div id="music-container" th:include="music/musicByGenre :: musicByGenreContainer"></div>
-
+<!-- 	<div id="music-container" th:include="music/musicByGenre :: musicByGenreContainer"></div> -->
+	<div id="music-container">
+		<div th:replace="music/musicByGenre :: musicByGenreContainer"></div>
+	</div>
 
 </body>
 
@@ -241,6 +220,8 @@ function loadMusic(genre) {
 	  xhr.open("GET", "/music/genre/" + encodeURIComponent(genre), true);
 	  xhr.send();
 	}
+
+
 
 </script>
 </html>

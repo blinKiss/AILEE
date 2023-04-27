@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="container-fluid" id="row2" th:fragment="musicByGenreContainer">
-  <div class="row" align="center">
+  <div class="row" align="center" th:fragment="musicByGenreContainer">
     <div class="col-md-4 mb-4" th:each="music : ${musicList}">
       <div class="card" style="width: 22rem;">
         <img th:src="${music.albumImg}" class="card-img-top"/>

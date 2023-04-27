@@ -75,7 +75,7 @@
     <p class="card-text" style="font-size:13px">채팅창에 당신의 기분을 남겨주시면 <br/> 당신에게 이 노래를 추천해 드릴게요 <br/> 당신의 기분에 위로와 기쁨이 될 수 있도록 바랄게요</p>
     <th:block sec:authorize="isAnonymous()">
 		<button type="button" onclick="location.href='/auth/login'" class="btn btn-primary mx-1">로그인</button>
-		<button type="button" onclick="location.href='/auth/join'" class="btn btn-primary mx-1">회원가입</button>
+		<button type="button" onclick="openPopup()" class="btn btn-primary mx-1">회원가입</button>
 	</th:block>
  <th:block sec:authorize="isAuthenticated()">
 	<button type="button" onclick="location.href=''" class="btn btn-primary">채팅하기</button>
@@ -87,4 +87,14 @@
 
 
 </body>
+
+<script>
+function openPopup(){
+	  let popupWindow = window.open("/auth/join", "회원 가입", "width=400,height=800");
+	  return popupWindow;
+	}
+
+</script>
+
+
 </html> 
