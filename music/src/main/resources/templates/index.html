@@ -89,10 +89,34 @@
 </body>
 
 <script>
-function openPopup(){
-	  let popupWindow = window.open("/auth/join", "회원 가입", "width=400,height=800");
-	  return popupWindow;
-	}
+let popupWindow;
+
+function openPopup() {
+  popupWindow = window.open("/auth/join", "회원 가입", "width=400,height=800");
+}
+
+window.addEventListener("message", function(event) {
+	  if (event.data === "회원가입 완료") {
+		
+	    popupWindow.close();
+	    onPopupClosed();
+	    
+// 	    location.reload();
+// 	    window.opener.location.reload();
+	  }
+	});
+	
+// 팝업 창이 닫히면 실행되는 함수
+function onPopupClosed() {
+  alert("회원 가입이 완료되었습니다.");
+
+  setTimeout(function() {
+		location.reload(true);
+	  }, 1000);
+//   location.href = location.href;
+//   location.reload();
+//   window.opener.location.reload();
+}
 
 </script>
 
