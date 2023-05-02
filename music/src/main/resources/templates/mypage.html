@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>My Page</title>
+<style>
+
+    .mypage .profile{
+        width: 100%;
+	    height: 100%;
+	    object-fit: cover;
+    
+    }
+    .mypage .col-md-4 {
+        width: 80%;
+	    height: 80%; 
+	    border-radius: 70%;
+	    overflow: hidden;
+	    
+    }
+	.mypage {
+		display:flex;
+		justify-content: center;
+		width : 220px;
+		height: 100%;
+	}
+
+</style>
+
+</head>
+<body>
+
+
+  <div class="row g-0 mypage">
+    <div class="col-md-4">
+      <img src="https://pngimg.com/uploads/batman/batman_PNG16.png" class="profile rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <p style="color:white;" class="card-text">닉네임 : <span sec:authentication="principal.username" class="text-white"></span></p>
+        <p style="color:white;" class="card-text">이름 : <span sec:authentication="principal.username" class="text-white"></span></p>
+        
+      </div>
+    </div>
+  </div>
+
+
+</body>
+</html>
