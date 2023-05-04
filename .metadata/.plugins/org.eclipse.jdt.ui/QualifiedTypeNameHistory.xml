@@ -25,4 +25,7 @@
     <fullyQualifiedTypeName name="com.team1.domain.MusicUsers"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+    <fullyQualifiedTypeName name="com.team1.mapper.ManGenerationMapper"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="com.team1.mapper.WomanGenerationMapper"/>
 </qualifiedTypeNameHistroy>
