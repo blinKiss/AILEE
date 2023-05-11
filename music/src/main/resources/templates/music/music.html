@@ -23,15 +23,48 @@
     height: 85px;
   }
   
-  .card-title a {
-    text-decoration: none;
-    color: white;
-    display: inline-block;
-    width: 270px;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow: ellipsis;
-  }
+/*   .card-title a { */
+/*     text-decoration: none; */
+/*     color: white; */
+/*     display: inline-block; */
+/*     width: 250px; */
+/*     overflow:hidden; */
+/*     white-space:nowrap; */
+/*     text-overflow: ellipsis; */
+/*   } */
+  
+   .card-text { 
+   	text-decoration: none; 
+     color: white; 
+     display: inline-block; 
+     width: 250px; 
+     overflow:hidden; 
+     white-space:nowrap; 
+     text-overflow: ellipsis;
+   }  
+.card-title a {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  width: 250px;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow: ellipsis;
+  position: relative; /* h5.card-title에 추가 */
+}
+
+.card-title:hover a {
+  white-space: nowrap;
+  overflow: visible;
+  color: red;
+  background-color: lightgray;
+  position: top; /* 변경된 부분 */
+  z-index: 3;
+  width: auto;
+  max-width: auto;
+  display: inline-flex;
+  align-items: center;
+}
 
   #row2 {
     position: relative;
@@ -40,8 +73,8 @@
  
     .container {
       position: relative;
-      margin-top: 5rem;
-      margin-bottom: 3rem;
+      margin-top: 11rem;
+/*       margin-bottom: 1rem; */
 /*       margin-left: 5rem; */
       margin : center;
       display: flex;
@@ -153,11 +186,20 @@
 		width : 250px;
 		height: 100%;
 	}
+
+
+	
+/* 내비 탑에 고정 */
+	#fixed-top {
+		position: fixed;
+		top: 0;	
+		width: 100%;
+		z-index:1;
+	}
 </style>
 
-
 <body>
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed_top">
+ <nav id="fixed-top" class="navbar navbar-expand-lg navbar-dark bg-dark fixed_top">
   <div class="container-fluid">
    <a class="navbar-brand" href="/" style="font-size:45px;">Music</a>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -207,6 +249,7 @@
     </div>
   </div>
  </th:block>
+
  </nav>
 
 <!--   <h2 style="text-align:center;"> 장르를 누르면 무작위 추천 </h2>	 -->
@@ -304,6 +347,20 @@ const mypage = document.querySelector('.toggle-mypage');
 
 button.addEventListener('click', () => {
   mypage.classList.toggle('show');
+});
+
+// 내비 탑에 고정
+const element = document.getElementById('fixed-top');
+const elementOffset = element.offsetTop;
+
+window.addEventListener('scroll', () => {
+  if (window.pageYOffset > elementOffset) {
+    element.style.position = 'fixed';
+    element.style.top = '0';
+  } else {
+    element.style.position = 'absolute';
+    element.style.top = `${elementOffset}px`;
+  }
 });
 
 </script>
