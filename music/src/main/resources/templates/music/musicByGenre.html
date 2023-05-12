@@ -11,11 +11,11 @@
       <div class="card" style="width: 22rem;">
         <img th:src="${music.albumImg}" class="card-img-top"/>
         <div class="card-body opacity-75">
-          <h5 class="card-title">
-            <a th:href="${music.youtube}" target="_blank">
-              <span th:text="${music.songName}"></span>
-            </a>
-          </h5>
+			<h5 class="card-title">
+			  <a th:href="${music.youtube}" target="_blank">
+			    <span th:text="${music.songName}"></span>
+			  </a>
+			</h5>
           <p class="card-text" th:text="${music.artist}"></p>
         </div>
       </div>

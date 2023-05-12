@@ -59,7 +59,7 @@
   color: red;
   background-color: lightgray;
   position: top; /* 변경된 부분 */
-  z-index: 3;
+  z-index: 1;
   width: auto;
   max-width: auto;
   display: inline-flex;
@@ -106,9 +106,13 @@
         margin: 0;
     }
 
-    a{
+/* 안누르면 파랑 누르면 보라 */
+   a {
       color: purple;
       text-decoration: none;
+   }
+   a.not-clicked {
+      color: blue;
    }
    
 .container > div > div {
@@ -256,13 +260,13 @@
 
   <div class="container" style="width:800px">
         <div>
-            <div>
+                        <div>
                 <span>종합</span>
                    <ul>
-                    	<li><a href="music"><span>아무거나</span></a></li>
-                        <li><a href="#" onclick="loadMusic('장르종합');"><span>장르종합</span></a></li>
-	                    <li><a href="#" onclick="loadMusic('국내종합');"><span>국내종합</span></a></li>
-	                    <li><a href="#" onclick="loadMusic('해외종합');"><span>해외종합</span></a></li>
+                       <li><a href="music" class="clicked"><span>아무거나</span></a></li>
+					   <li><a href="#" onclick="loadMusic('장르종합');" class="not-clicked"><span>장르종합</span></a></li>
+					   <li><a href="#" onclick="loadMusic('국내종합');" class="not-clicked"><span>국내종합</span></a></li>
+					   <li><a href="#" onclick="loadMusic('해외종합');" class="not-clicked"><span>해외종합</span></a></li>
                    </ul>
             </div>
 
@@ -270,14 +274,14 @@
                 <span>한국대중음악</span>
                 
                     <ul>
-						<li><a href="#" onclick="loadMusic('국내_발라드');"><span>발라드</span></a></li>
-                        <li><a href="#" onclick="loadMusic('국내_댄스');"><span>댄스</span></a></li>
-                        <li><a href="#" onclick="loadMusic('국내_랩／힙합');"><span>랩/힙합</span></a></li>
-                        <li><a href="#" onclick="loadMusic('국내_R&B／Soul');"><span>R&amp;B/Soul</span></a></li>
-                        <li><a href="#" onclick="loadMusic('국내_인디음악');"><span>인디음악</span></a></li>
-                        <li><a href="#" onclick="loadMusic('국내_록／메탈');"><span>록/메탈</span></a></li>
-                        <li><a href="#" onclick="loadMusic('국내_트로트');"><span>트로트</span></a></li>
-                        <li><a href="#" onclick="loadMusic('국내_포크／블루스');"><span>포크/블루스</span></a></li>
+						<li><a href="#" onclick="loadMusic('국내_발라드');" class="not-clicked"><span>발라드</span></a></li>
+                        <li><a href="#" onclick="loadMusic('국내_댄스');" class="not-clicked"><span>댄스</span></a></li>
+                        <li><a href="#" onclick="loadMusic('국내_랩／힙합');" class="not-clicked"><span>랩/힙합</span></a></li>
+                        <li><a href="#" onclick="loadMusic('국내_R&B／Soul');" class="not-clicked"><span>R&amp;B/Soul</span></a></li>
+                        <li><a href="#" onclick="loadMusic('국내_인디음악');" class="not-clicked"><span>인디음악</span></a></li>
+                        <li><a href="#" onclick="loadMusic('국내_록／메탈');" class="not-clicked"><span>록/메탈</span></a></li>
+                        <li><a href="#" onclick="loadMusic('국내_트로트');" class="not-clicked"><span>트로트</span></a></li>
+                        <li><a href="#" onclick="loadMusic('국내_포크／블루스');" class="not-clicked"><span>포크/블루스</span></a></li>
                     </ul>
             </div>    
 
@@ -285,12 +289,12 @@
                 <span>해외POP음악</span>
                 
                     <ul>
-                        <li><a href="#" onclick="loadMusic('해외_POP');"><span>POP</span></a></li>
-                        <li><a href="#" onclick="loadMusic('해외_록／메탈');"><span>록/메탈</span></a></li>
-                        <li><a href="#" onclick="loadMusic('해외_일렉트로니카');"><span>일렉트로니카</span></a></li>
-                        <li><a href="#" onclick="loadMusic('해외_랩／힙합');"><span>랩/힙합</span></a></li>
-                        <li><a href="#" onclick="loadMusic('해외_R&B／Soul');"><span>R&amp;B/Soul</span></a></li>
-                        <li><a href="#" onclick="loadMusic('해외_포크／블루스／컨트리');"><span>포크/블루스/컨트리</span></a></li>
+                        <li><a href="#" onclick="loadMusic('해외_POP');" class="not-clicked"><span>POP</span></a></li>
+                        <li><a href="#" onclick="loadMusic('해외_록／메탈');" class="not-clicked"><span>록/메탈</span></a></li>
+                        <li><a href="#" onclick="loadMusic('해외_일렉트로니카');" class="not-clicked"><span>일렉트로니카</span></a></li>
+                        <li><a href="#" onclick="loadMusic('해외_랩／힙합');" class="not-clicked"><span>랩/힙합</span></a></li>
+                        <li><a href="#" onclick="loadMusic('해외_R&B／Soul');" class="not-clicked"><span>R&amp;B/Soul</span></a></li>
+                        <li><a href="#" onclick="loadMusic('해외_포크／블루스／컨트리');" class="not-clicked"><span>포크/블루스/컨트리</span></a></li>
                     </ul>
             </div>    
 
@@ -298,17 +302,17 @@
                 <span>그외인기장르</span>
                 
                     <ul>
-                        <li><a href="#" onclick="loadMusic('그외_OST');"><span>OST</span></a></li>
-                        <li><a href="#" onclick="loadMusic('그외_재즈');"><span>재즈</span></a></li>
-                        <li><a href="#" onclick="loadMusic('그외_뉴에이지');"><span>뉴에이지</span></a></li>
-                        <li><a href="#" onclick="loadMusic('그외_J-pop');"><span>J-pop</span></a></li>
-                        <li><a href="#" onclick="loadMusic('그외_월드뮤직');"><span>월드뮤직</span></a></li>
-                        <li><a href="#" onclick="loadMusic('그외_CCM');"><span>CCM</span></a></li>
-                        <li><a href="#" onclick="loadMusic('그외_어린이／태교');"><span>어린이/태교</span></a></li>
-                        <li><a href="#" onclick="loadMusic('그외_종교음악');"><span>종교음악</span></a></li>
-                        <li><a href="#" onclick="loadMusic('그외_국악');"><span>국악</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_OST');" class="not-clicked"><span>OST</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_재즈');" class="not-clicked"><span>재즈</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_뉴에이지');" class="not-clicked"><span>뉴에이지</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_J-pop');" class="not-clicked"><span>J-pop</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_월드뮤직');" class="not-clicked"><span>월드뮤직</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_CCM');" class="not-clicked"><span>CCM</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_어린이／태교');" class="not-clicked"><span>어린이/태교</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_종교음악');" class="not-clicked"><span>종교음악</span></a></li>
+                        <li><a href="#" onclick="loadMusic('그외_국악');" class="not-clicked"><span>국악</span></a></li>
                     </ul>
-            </div>    
+            </div>      
         </div>                
     </div>
 <!--       <h4 style="text-align:center;"> 곡 제목을 누르면 유튜브로 이동 </h4> -->
@@ -349,6 +353,18 @@ button.addEventListener('click', () => {
   mypage.classList.toggle('show');
 });
 
+// 마이페이지 외부 눌러서 닫기
+window.addEventListener('click', (event) => {
+  // 클릭한 요소가 .toggle-menu-button 클래스를 포함하지 않은 경우에만 toggle
+  if (!event.target.closest('.toggle-menu-button')) {
+    // 클릭한 요소가 .toggle-mypage 클래스를 포함하거나 .toggle-mypage 요소 내부를 클릭한 경우에는 이벤트 버블링 중지
+    if (!event.target.closest('.toggle-mypage')) {
+      mypage.classList.remove('show');
+    }
+    event.stopPropagation();
+  }
+});
+
 // 내비 탑에 고정
 const element = document.getElementById('fixed-top');
 const elementOffset = element.offsetTop;
@@ -363,5 +379,17 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// 링크 누르면 보라색으로 변환
+   var links = document.getElementsByTagName("a");
+   for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener("click", function() {
+         for (var j = 0; j < links.length; j++) {
+            links[j].classList.add("not-clicked");
+            links[j].classList.remove("clicked");
+         }
+         this.classList.add("clicked");
+         this.classList.remove("not-clicked");
+      });
+   }
 </script>
 </html>

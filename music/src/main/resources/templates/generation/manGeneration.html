@@ -250,5 +250,17 @@ const mypage = document.querySelector('.toggle-mypage');
 button.addEventListener('click', () => {
   mypage.classList.toggle('show');
 });
+
+// 마이페이지 외부 눌러서 닫기
+window.addEventListener('click', (event) => {
+  // 클릭한 요소가 .toggle-menu-button 클래스를 포함하지 않은 경우에만 toggle
+  if (!event.target.closest('.toggle-menu-button')) {
+    // 클릭한 요소가 .toggle-mypage 클래스를 포함하거나 .toggle-mypage 요소 내부를 클릭한 경우에는 이벤트 버블링 중지
+    if (!event.target.closest('.toggle-mypage')) {
+      mypage.classList.remove('show');
+    }
+    event.stopPropagation();
+  }
+});
 </script>
 </html>

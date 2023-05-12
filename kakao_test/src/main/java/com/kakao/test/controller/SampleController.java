@@ -16,8 +16,10 @@ import lombok.extern.java.Log;
 @Controller
 public class SampleController {
     
-    @Setter(onMethod_ = @Autowired)
-    private KakaoPay kakaopay;
+    // @Setter(onMethod_ = @Autowired)
+    @Autowired
+	private KakaoPay kakaopay;
+    
     
     
     @GetMapping("/kakaoPay")
