@@ -23,25 +23,26 @@
     height: 85px;
   }
   
-/*   .card-title a { */
-/*     text-decoration: none; */
-/*     color: white; */
-/*     display: inline-block; */
-/*     width: 250px; */
-/*     overflow:hidden; */
-/*     white-space:nowrap; */
-/*     text-overflow: ellipsis; */
-/*   } */
+/*    .card-title a {  */
+/*      text-decoration: none;  */
+/*      color: white;  */
+/*      display: inline-block;  */
+/*      width: 250px;  */
+/*      overflow:hidden;  */
+/*      white-space:nowrap;  */
+/*      text-overflow: ellipsis;  */
+/*    }  */
   
-   .card-text { 
-   	text-decoration: none; 
-     color: white; 
-     display: inline-block; 
-     width: 250px; 
-     overflow:hidden; 
-     white-space:nowrap; 
-     text-overflow: ellipsis;
-   }  
+.card-text {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .card-title a {
   text-decoration: none;
   color: white;
@@ -57,7 +58,6 @@
   white-space: nowrap;
   overflow: visible;
   color: red;
-  background-color: lightgray;
   position: top; /* 변경된 부분 */
   z-index: 1;
   width: auto;
@@ -65,6 +65,7 @@
   display: inline-flex;
   align-items: center;
 }
+
 
   #row2 {
     position: relative;
@@ -107,11 +108,11 @@
     }
 
 /* 안누르면 파랑 누르면 보라 */
-   a {
+   ul > li > a {
       color: purple;
       text-decoration: none;
    }
-   a.not-clicked {
+   ul > li > a.not-clicked {
       color: blue;
    }
    
@@ -380,16 +381,36 @@ window.addEventListener('scroll', () => {
 });
 
 // 링크 누르면 보라색으로 변환
-   var links = document.getElementsByTagName("a");
-   for (var i = 0; i < links.length; i++) {
-      links[i].addEventListener("click", function() {
-         for (var j = 0; j < links.length; j++) {
-            links[j].classList.add("not-clicked");
-            links[j].classList.remove("clicked");
-         }
-         this.classList.add("clicked");
-         this.classList.remove("not-clicked");
-      });
-   }
+var links = document.querySelectorAll("ul > li > a");
+for (var i = 0; i < links.length; i++) {
+  links[i].addEventListener("click", function() {
+    for (var j = 0; j < links.length; j++) {
+      links[j].classList.add("not-clicked");
+      links[j].classList.remove("clicked");
+    }
+    this.classList.add("clicked");
+    this.classList.remove("not-clicked");
+  });
+}
+
+// 마우스오버시 전체 텍스트 보이기
+document.addEventListener("DOMContentLoaded", function() {
+  var cardTitle = document.querySelector(".card-title");
+  var tooltip = document.createElement("p");
+  tooltip.className = "tooltip";
+  tooltip.style.display = "none";
+  
+  cardTitle.appendChild(tooltip);
+  
+  cardTitle.addEventListener("mouseover", function() {
+    var songName = this.querySelector("span").innerText;
+    tooltip.innerText = songName;
+    tooltip.style.display = "block";
+  });
+  
+  cardTitle.addEventListener("mouseout", function() {
+    tooltip.style.display = "none";
+  });
+});
 </script>
 </html>

@@ -12,6 +12,19 @@
     <button>결제하기</button>
 </form>
  
- 
+<canvas id="myCanvas" width="958" height="516" style="border:1px solid black"></canvas>
+
+
+<script>
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+
+// 배경색 설정
+ctx.fillStyle = "darkgray";
+
+// 전체 캔버스에 배경색 채우기
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+</script>
+
 </body>
 </html>
