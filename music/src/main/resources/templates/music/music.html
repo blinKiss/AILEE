@@ -55,16 +55,17 @@
 }
 
 .card-title:hover a {
-  white-space: nowrap;
+  white-space: normal;
   overflow: visible;
-  color: red;
-  position: top; /* 변경된 부분 */
+  color: white;
+  position: top;
   z-index: 1;
   width: auto;
   max-width: auto;
   display: inline-flex;
   align-items: center;
 }
+
 
 
   #row2 {
@@ -109,7 +110,7 @@
 
 /* 안누르면 파랑 누르면 보라 */
    ul > li > a {
-      color: purple;
+      color: red;
       text-decoration: none;
    }
    ul > li > a.not-clicked {
@@ -392,25 +393,5 @@ for (var i = 0; i < links.length; i++) {
     this.classList.remove("not-clicked");
   });
 }
-
-// 마우스오버시 전체 텍스트 보이기
-document.addEventListener("DOMContentLoaded", function() {
-  var cardTitle = document.querySelector(".card-title");
-  var tooltip = document.createElement("p");
-  tooltip.className = "tooltip";
-  tooltip.style.display = "none";
-  
-  cardTitle.appendChild(tooltip);
-  
-  cardTitle.addEventListener("mouseover", function() {
-    var songName = this.querySelector("span").innerText;
-    tooltip.innerText = songName;
-    tooltip.style.display = "block";
-  });
-  
-  cardTitle.addEventListener("mouseout", function() {
-    tooltip.style.display = "none";
-  });
-});
 </script>
 </html>
