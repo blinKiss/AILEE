@@ -12,18 +12,117 @@
     <button>결제하기</button>
 </form>
  
-<canvas id="myCanvas" width="958" height="516" style="border:1px solid black"></canvas>
 
 
+          
+<ul id="login-status">
+  <li>
+    <a href="javascript:void(0)" onclick="kakaoLogin();">
+      <img src="/img/kakao_login_medium_narrow.png">
+    </a>
+  </li>
+</ul>
+
+<div id="user-info">
+  <div id="nickname"></div>
+  <div id="email"></div>
+  <div id="gender"></div>
+  <div id="age-range"></div>
+</div>
+
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
-const canvas = document.getElementById("myCanvas");
-const ctx = canvas.getContext("2d");
+// Kakao.init({
+//     appKey: 'af85f67fba61792eeb11697696f57aa9',
+//     redirectUri: 'localhost:8080',
+//   });
 
-// 배경색 설정
-ctx.fillStyle = "darkgray";
+Kakao.init('af85f67fba61792eeb11697696f57aa9'); //발급받은 키 중 javascript키를 사용해준다.
+console.log(Kakao.isInitialized()); // sdk초기화여부판단
 
-// 전체 캔버스에 배경색 채우기
-ctx.fillRect(0, 0, canvas.width, canvas.height);
+// 카카오 초기화 및 로그인/로그아웃 함수들
+function displayUserInfo(nickname, email, gender, ageRange) {
+  var nicknameElement = document.getElementById('nickname');
+  var emailElement = document.getElementById('email');
+  var genderElement = document.getElementById('gender');
+  var ageRangeElement = document.getElementById('age-range');
+    
+    // 성별과 연령대를 요소에 삽입
+  nicknameElement.innerText = '닉네임: ' + nickname;
+  emailElement.innerText = '이메일: ' + email;
+  genderElement.innerText = '성별: ' + gender;
+  ageRangeElement.innerText = '연령대: ' + ageRange;
+    
+    // 로그인 상태에 따라 버튼 표시 변경
+    var loginStatusElement = document.getElementById('login-status');
+    loginStatusElement.innerHTML = '<li onclick="kakaoLogout();"><a href="javascript:void(0)"><span>카카오 로그아웃</span></a></li>';
+  }
+  
+//카카오로그인
+
+  function kakaoLogin() {
+	  Kakao.Auth.login({
+		  success: function (response) {
+		    Kakao.API.request({
+		      url: '/v2/user/me',
+		      success: function (response) {
+		        var nickname = response.kakao_account.profile.nickname;
+		        var email = response.kakao_account.email;
+		        var gender = response.kakao_account.gender;
+		        var ageRange = response.kakao_account.age_range;
+		        displayUserInfo(nickname, email, gender, ageRange);
+		      },
+		      fail: function (error) {
+		        console.log(error);
+		      },
+		    });
+		  },
+		  fail: function (error) {
+		    console.log(error);
+		  },
+		});
+  }
+
+  function kakaoLogout() {
+    if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response) {
+          console.log(response);
+          // 로그아웃 후 사용자 정보 제거 및 로그인 버튼 표시
+          var userInfoElement = document.getElementById('user-info');
+          userInfoElement.innerHTML = '';
+          var loginStatusElement = document.getElementById('login-status');
+          loginStatusElement.innerHTML = '<li><a href="javascript:void(0)" onclick="kakaoLogin();"><img src="/img/kakao_login_medium_narrow.png"></a></li>';
+        },
+        fail: function (error) {
+          console.log(error);
+        },
+      });
+      Kakao.Auth.setAccessToken(undefined);
+      // 로그아웃 후 새로고침
+      location.reload();
+    }
+  }
+
+  // 페이지 로드 시 사용자가 로그인되어 있는지 확인하고 정보를 표시
+  Kakao.Auth.getStatusInfo(function (statusObj) {
+    if (statusObj.status === 'connected') {
+      Kakao.API.request({
+        url: '/v2/user/me',
+        success: function (response) {
+          var gender = response.kakao_account.gender;
+          var ageRange = response.kakao_account.age_range;
+          displayUserInfo(gender, ageRange);
+        },
+        fail: function (error) {
+          console.log(error);
+        },
+      });
+    }
+  });
+  
+  
 </script>
 
 </body>

@@ -28,4 +28,7 @@
     <fullyQualifiedTypeName name="com.team1.mapper.ManGenerationMapper"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="com.team1.mapper.WomanGenerationMapper"/>
+    <fullyQualifiedTypeName name="com.kakao.test.service.KakaoService"/>
+    <fullyQualifiedTypeName name="lombok.Value"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
 </qualifiedTypeNameHistroy>
