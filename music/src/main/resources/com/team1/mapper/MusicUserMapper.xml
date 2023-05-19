@@ -21,4 +21,11 @@
     <select id="checkUserId" resultType="int">
         SELECT COUNT(*) FROM music_users WHERE user_id = #{userId}
     </select>
+    
+    	<!-- 프로필 업데이트 -->
+	<update id="updateProfile" parameterType="map">
+		UPDATE music_users
+		SET profile = #{profile}
+		WHERE user_id = #{userId}
+	</update>
 </mapper>

@@ -1,6 +1,7 @@
 package com.team1.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.team1.domain.MusicUserAuth;
 import com.team1.domain.MusicUsers;
@@ -15,4 +16,6 @@ public interface MusicUserMapper {
     // 아이디 중복 확인
     public int checkUserId(String userId) throws Exception;
 	
+ // 프로필 업데이트
+ 	public int updateProfile(@Param("userId") String userId, @Param("profile") int profile) throws Exception;
 }

@@ -1,5 +1,9 @@
 package com.team1.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.security.Principal;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team1.domain.MusicUsers;
@@ -89,4 +94,26 @@ public class UserController {
 	        return "success";
 	    }
 	}
+	
+	// 프로필 수정
+	@PostMapping("/updateProfile")
+    public String updateProfile(@RequestParam("profileImage") MultipartFile profileImage,
+                                Principal principal) {
+        try {
+            if (!profileImage.isEmpty()) {
+                String fileName = principal.getName() + ".webp"; // 사용자 아이디를 파일 이름으로 설정
+                String filePath = "/path/to/save/profiles/" + fileName; // 실제 파일 저장 경로
+                profileImage.transferTo(new File(filePath));
+
+                // 프로필 업데이트 메서드 호출
+                userService.updateProfile(principal.getName(), 1); // 1은 업데이트한 프로필 번호, 여기서는 임의로 1로 설정
+            }
+        } catch (IOException e) {
+            log.error("Failed to update profile image: " + e.getMessage());
+            // 예외 처리
+        }
+
+        return "redirect:/mypage";
+    }
+
 }

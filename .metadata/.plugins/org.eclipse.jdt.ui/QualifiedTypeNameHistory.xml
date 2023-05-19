@@ -31,4 +31,5 @@
     <fullyQualifiedTypeName name="com.kakao.test.service.KakaoService"/>
     <fullyQualifiedTypeName name="lombok.Value"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
 </qualifiedTypeNameHistroy>
