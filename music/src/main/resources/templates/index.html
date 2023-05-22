@@ -119,11 +119,10 @@
     </div>
     <div class="card border-light mb-3 toggle-mypage bg-dark">
       <div class="row g-0 mypage">
-        <div class="col-md-4">
-            <img th:if="${profile == 0}" src="@{/img/White.webp}" class="profile rounded-start" alt="...">
-			<img th:unless="${profile == 0}" th:src="@{/img/profile/__${profile}__.webp}" class="profile rounded-start" alt="...">
-
-        </div>
+<div class="col-md-4">
+    <img th:if="${profile == 0}" src="../img/White.webp" class="profile rounded-start" alt="...">
+    <img th:unless="${profile == 0}" th:src="@{'/img/profile/' + profile + '.webp'}" class="profile rounded-start" alt="...">
+</div>
         <div class="col-md-8">
           <div>
             <p style="color:white;" class="card-text">닉네임 : <span sec:authentication="principal.username" class="text-white"></span></p>

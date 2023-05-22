@@ -11,7 +11,4 @@ public interface MusicUserService {
 	
 	public HttpSession tokenAuthenticaion(MusicUsers user, HttpServletRequest reauest) throws Exception;
 	
-    public void updateProfile(String userId, int profile) throws Exception {
-        userMapper.updateProfile(userId, profile);
-    }
 }
