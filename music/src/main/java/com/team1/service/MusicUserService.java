@@ -11,4 +11,7 @@ public interface MusicUserService {
 	
 	public HttpSession tokenAuthenticaion(MusicUsers user, HttpServletRequest reauest) throws Exception;
 	
+	// 프로필 사진
+	public int getProfileById(String userId);
+    void updateProfile(String userId, int profile);
 }

@@ -212,8 +212,8 @@ function checkAge() {
 	  var ageInput = document.getElementsByName("age")[0];
 	  var age = parseInt(ageInput.value);
 
-	  if (isNaN(age) || age < 1 || age > 70) {
-	    alert("나이는 1~70 사이의 숫자만 입력해주세요.");
+	  if (isNaN(age) || age < 1 || age > 59) {
+	    alert("나이는 1~59 사이의 숫자만 입력해주세요.");
 	    ageInput.value = "";
 	  }
 }

@@ -22,7 +22,11 @@
         SELECT COUNT(*) FROM music_users WHERE user_id = #{userId}
     </select>
     
-    	<!-- 프로필 업데이트 -->
+    <!-- 프로필 사진 -->
+	<select id="getProfileById" parameterType="int" resultType="int">
+	    SELECT profile FROM music_users WHERE user_id = #{userId}
+	</select>
+
 	<update id="updateProfile" parameterType="map">
 		UPDATE music_users
 		SET profile = #{profile}
