@@ -16,5 +16,6 @@ public class MusicUsers {
 	private int enabled;
 	private LocalDateTime regDate;
 	private LocalDateTime updDate;
+	// 프로필 사진
 	private int profile;
 }

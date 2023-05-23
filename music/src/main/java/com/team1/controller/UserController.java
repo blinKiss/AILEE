@@ -1,5 +1,7 @@
 package com.team1.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -123,34 +125,24 @@ public class UserController {
 //
 //	    return imagePath;
 //	}
-	@GetMapping("/getUserProfileById")
-	public String getUserProfileById(@RequestParam("userId") String userId, Model model) {
-	    int result = userMapper.getProfileById(userId);
-	    String imagePath;
-	    if (result == 0) {
-	        imagePath = "/img/Black.webp";
-	    } else if (result == 1){
-	        imagePath = "/img/Blue.webp";
-	    } else if (result == 2){
-	        imagePath = "/img/Pink.webp";
-	    } else if (result == 3){
-	        imagePath = "/img/Red.webp";
-	    } else if (result == 4){
-	        imagePath = "/img/White.webp";
-	    } else if (result == 5){
-	        imagePath = "/img/Yellow.webp";
-	    } else {
-	        imagePath = "/img/Orange.webp";
-	    }
-	    model.addAttribute("imagePath", imagePath);
 
-	    // 추가: 모든 페이지에서 사용할 수 있도록 Principal 정보도 추가
-	    model.addAttribute("principal", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+//    @GetMapping("/profile/{userId}")
+//    public String getProfileById(@PathVariable String userId, Model model) {
+//        int profile = userMapper.getProfileById(userId);
+//        model.addAttribute("profile", profile);
+//        return "profile";
+//    }
 
-	    return "index";
+	// 프로필 사진
+	@GetMapping("/profile")
+	@ResponseBody
+	public int getProfileById(Principal principal) {
+	    String userId = principal.getName(); // 로그인한 사용자의 아이디 가져오기
+	    return userMapper.getProfileById(userId);
 	}
+	
+	// 프로필 수정
 
 
-   
 
 }

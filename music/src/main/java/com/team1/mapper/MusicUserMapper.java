@@ -18,10 +18,9 @@ public interface MusicUserMapper {
     public int checkUserId(String userId) throws Exception;
 	
     // 프로필 사진
-    int getProfileById(String userId);
+    public int getProfileById(String userId);
 
-
-//    public int getProfileById(String userId);
+    // 프로필 수정
 
 //    void updateProfile(Map<String, Object> paramMap);
 }

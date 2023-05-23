@@ -27,7 +27,7 @@
 	    SELECT profile FROM music_users WHERE user_id = #{userId}
 	</select>
 
-
+	<!-- 프로필 수정 -->
 	<update id="updateProfile" parameterType="map">
 		UPDATE music_users
 		SET profile = #{profile}
