@@ -82,19 +82,19 @@ public class MusicUserServiceImpl implements MusicUserService {
 	}
 	
 	// 프로필 사진
-	@Override
-	public int getProfileById(String userId) {
-	    int profile = mapper.getProfileById(userId);
-	    System.out.println("Profile value: " + profile);
-	    return profile;
-	}
+//	@Override
+//	public int getProfileById(String userId) {
+//	    int profile = mapper.getProfileById(userId);
+//	    System.out.println("Profile value: " + profile);
+//	    return profile;
+//	}
 
-    @Override
-    public void updateProfile(String userId, int profile) {
-        Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("userId", userId);
-        paramMap.put("profile", profile);
-        mapper.updateProfile(paramMap);
-    }
+//    @Override
+//    public void updateProfile(String userId, int profile) {
+//        Map<String, Object> paramMap = new HashMap<>();
+//        paramMap.put("userId", userId);
+//        paramMap.put("profile", profile);
+//        mapper.updateProfile(paramMap);
+//    }
 	
 }

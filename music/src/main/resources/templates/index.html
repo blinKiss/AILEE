@@ -121,13 +121,7 @@
       <div class="row g-0 mypage">
 		<div class="col-md-4">
 		<a href="/myPage/myPage">
-			<img th:if="${profile == 0}" src="/img/Black.webp" class="profile rounded-start" alt="...">
-			<img th:if="${profile == 1}" src="/img/Blue.webp" class="profile rounded-start" alt="...">
-			<img th:if="${profile == 2}" src="/img/Pink.webp" class="profile rounded-start" alt="...">
-			<img th:if="${profile == 3}" src="/img/Red.webp" class="profile rounded-start" alt="...">
-			<img th:if="${profile == 4}" src="/img/White.webp" class="profile rounded-start" alt="...">
-			<img th:if="${profile == 5}" src="/img/Yellow.webp" class="profile rounded-start" alt="...">
-			<img th:unless="${profile == 0}" src="/img/Orange.webp" class="profile rounded-start" alt="..."> 
+			<img src="${imagePath}" alt="프로필 이미지">
 		</a>
 		</div>
         <div class="col-md-8">
@@ -151,7 +145,7 @@
  </nav>
 
 
- 
+
  <div class="main_image">
       <img src="https://static.wixstatic.com/media/11062b_51d1f4d5dcfc4ce09d58b46aa23d5783~mv2.jpg/v1/fill/w_735,h_311,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/11062b_51d1f4d5dcfc4ce09d58b46aa23d5783~mv2.jpg" width="100%" height="100%" style="position: relative;">
    
@@ -230,39 +224,39 @@ window.addEventListener('click', (event) => {
 });
 
 // 프로필 사진
-$(document).ready(function() {
-  $.ajax({
-    url: "/getUserProfileById",  // 프로필 값을 가져올 API 엔드포인트
-    method: "GET",
-    success: function(data) {
-      var profile = data;  // 서버에서 받은 프로필 값
-      var imageSrc;
+// $(document).ready(function() {
+//   $.ajax({
+//     url: "/getUserProfileById",  // 프로필 값을 가져올 API 엔드포인트
+//     method: "GET",
+//     success: function(data) {
+//       var profile = data;  // 서버에서 받은 프로필 값
+//       var imageSrc;
 
-      // profile 값에 따라 이미지 경로 설정
-      if (profile === 0) {
-        imageSrc = "/img/Black.webp";
-      } else if (profile === 1) {
-        imageSrc = "/img/Blue.webp";
-      } else if (profile === 2) {
-        imageSrc = "/img/Pink.webp";
-      } else if (profile === 3) {
-        imageSrc = "/img/Red.webp";
-      } else if (profile === 4) {
-        imageSrc = "/img/White.webp";
-      } else if (profile === 5) {
-        imageSrc = "/img/Yellow.webp";
-      } else {
-        imageSrc = "/img/Error.webp";
-      }
+//       // profile 값에 따라 이미지 경로 설정
+//       if (profile === 0) {
+//         imageSrc = "/img/Black.webp";
+//       } else if (profile === 1) {
+//         imageSrc = "/img/Blue.webp";
+//       } else if (profile === 2) {
+//         imageSrc = "/img/Pink.webp";
+//       } else if (profile === 3) {
+//         imageSrc = "/img/Red.webp";
+//       } else if (profile === 4) {
+//         imageSrc = "/img/White.webp";
+//       } else if (profile === 5) {
+//         imageSrc = "/img/Yellow.webp";
+//       } else {
+//         imageSrc = "/img/Error.webp";
+//       }
 
-      // 이미지 요소에 동적으로 이미지 경로 설정
-      $(".profile").attr("src", imageSrc);
-    },
-    error: function() {
-      // 오류 처리
-    }
-  });
-});
+//       // 이미지 요소에 동적으로 이미지 경로 설정
+//       $(".profile").attr("src", imageSrc);
+//     },
+//     error: function() {
+//       // 오류 처리
+//     }
+//   });
+// });
 </script>
 
 

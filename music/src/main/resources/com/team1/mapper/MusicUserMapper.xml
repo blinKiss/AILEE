@@ -23,9 +23,10 @@
     </select>
     
     <!-- 프로필 사진 -->
-	<select id="getProfileById" parameterType="int" resultType="int">
+	<select id="getProfileById" resultType="int">
 	    SELECT profile FROM music_users WHERE user_id = #{userId}
 	</select>
+
 
 	<update id="updateProfile" parameterType="map">
 		UPDATE music_users

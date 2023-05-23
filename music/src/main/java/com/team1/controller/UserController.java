@@ -96,40 +96,61 @@ public class UserController {
 	}
 	
 	// 프로필 사진
-	@GetMapping("/getUserProfileById")
-	@ResponseBody
-	public String getUserProfileById(@RequestParam("userId") String userId) {
-	    int profile = userService.getProfileById(userId);
-
-	    // 프로필에 따라 이미지 파일 경로를 반환
+//	@GetMapping("/getUserProfileById")
+//	@ResponseBody
+//	public String getUserProfileById(@RequestParam("userId") String userId) throws Exception {
+//	    int profile = userMapper.getProfileById(userId);
+//	    String imagePath;
+//	    switch (profile) {
+//	        case 0:
+//	            imagePath = "/img/Black.webp";
+//	            break;
+//	        case 1:
+//	            imagePath = "/img/Blue.webp";
+//	            break;
+//	        case 2:
+//	            imagePath = "/img/Pink.webp";
+//	            break;
+//	        case 3:
+//	            imagePath = "/img/Red.webp";
+//	            break;
+//	        case 4:
+//	            imagePath = "/img/White.webp";
+//	            break;
+//	        case 5:
+//	            imagePath = "/img/Yellow.webp";
+//	            break;
+//	        default:
+//	            imagePath = "/img/Orange.webp";
+//	            break;
+//	    }
+//
+//	    return imagePath;
+//	}
+	@GetMapping("/getUserProfile")
+	public String getUserProfile(@RequestParam("userId") String userId, Model model) {
+	    int result = userMapper.getProfileById(userId);
 	    String imagePath;
-	    switch (profile) {
-	        case 0:
-	            imagePath = "/img/Black.webp";
-	            break;
-	        case 1:
-	            imagePath = "/img/Blue.webp";
-	            break;
-	        case 2:
-	            imagePath = "/img/Pink.webp";
-	            break;
-	        case 3:
-	            imagePath = "/img/Red.webp";
-	            break;
-	        case 4:
-	            imagePath = "/img/White.webp";
-	            break;
-	        case 5:
-	            imagePath = "/img/Yellow.webp";
-	            break;
-	        default:
-	            imagePath = "/img/Orange.webp";
-	            break;
+	    if (result == 0) {
+	        imagePath = "/img/Black.webp";
+	    } else if (result == 1) {
+	        imagePath = "/img/Blue.webp";
+	    } else if (result == 2) {
+	        imagePath = "/img/Pink.webp";
+	    } else if (result == 3) {
+	        imagePath = "/img/Red.webp";
+	    } else if (result == 4) {
+	        imagePath = "/img/White.webp";
+	    } else if (result == 5) {
+	        imagePath = "/img/Yellow.webp";
+	    } else {
+	        imagePath = "/img/Orange.webp";
 	    }
-
-	    return imagePath;
-	    
+	    model.addAttribute("imagePath", imagePath);
+	    return "index";
 	}
+
+
    
 
 }
