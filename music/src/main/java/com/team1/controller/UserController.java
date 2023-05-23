@@ -1,14 +1,11 @@
 package com.team1.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.security.Principal;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team1.domain.MusicUsers;
@@ -127,26 +123,30 @@ public class UserController {
 //
 //	    return imagePath;
 //	}
-	@GetMapping("/getUserProfile")
-	public String getUserProfile(@RequestParam("userId") String userId, Model model) {
+	@GetMapping("/getUserProfileById")
+	public String getUserProfileById(@RequestParam("userId") String userId, Model model) {
 	    int result = userMapper.getProfileById(userId);
 	    String imagePath;
 	    if (result == 0) {
 	        imagePath = "/img/Black.webp";
-	    } else if (result == 1) {
+	    } else if (result == 1){
 	        imagePath = "/img/Blue.webp";
-	    } else if (result == 2) {
+	    } else if (result == 2){
 	        imagePath = "/img/Pink.webp";
-	    } else if (result == 3) {
+	    } else if (result == 3){
 	        imagePath = "/img/Red.webp";
-	    } else if (result == 4) {
+	    } else if (result == 4){
 	        imagePath = "/img/White.webp";
-	    } else if (result == 5) {
+	    } else if (result == 5){
 	        imagePath = "/img/Yellow.webp";
 	    } else {
 	        imagePath = "/img/Orange.webp";
 	    }
 	    model.addAttribute("imagePath", imagePath);
+
+	    // 추가: 모든 페이지에서 사용할 수 있도록 Principal 정보도 추가
+	    model.addAttribute("principal", SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
 	    return "index";
 	}
 
