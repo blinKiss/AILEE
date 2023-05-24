@@ -1,8 +1,8 @@
 package com.team1.mapper;
 
-import java.util.Map;
-
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 
 import com.team1.domain.MusicUserAuth;
 import com.team1.domain.MusicUsers;
@@ -21,6 +21,9 @@ public interface MusicUserMapper {
     public int getProfileById(String userId);
 
     // 프로필 수정
+    public int updateProfile(@Param("userId") String userId, @Param("profile") int profile);
+
+
 
 //    void updateProfile(Map<String, Object> paramMap);
 }

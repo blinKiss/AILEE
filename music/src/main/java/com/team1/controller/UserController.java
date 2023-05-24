@@ -1,13 +1,14 @@
 package com.team1.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -92,46 +93,6 @@ public class UserController {
 	        return "success";
 	    }
 	}
-	
-	// 프로필 사진
-//	@GetMapping("/getUserProfileById")
-//	@ResponseBody
-//	public String getUserProfileById(@RequestParam("userId") String userId) throws Exception {
-//	    int profile = userMapper.getProfileById(userId);
-//	    String imagePath;
-//	    switch (profile) {
-//	        case 0:
-//	            imagePath = "/img/Black.webp";
-//	            break;
-//	        case 1:
-//	            imagePath = "/img/Blue.webp";
-//	            break;
-//	        case 2:
-//	            imagePath = "/img/Pink.webp";
-//	            break;
-//	        case 3:
-//	            imagePath = "/img/Red.webp";
-//	            break;
-//	        case 4:
-//	            imagePath = "/img/White.webp";
-//	            break;
-//	        case 5:
-//	            imagePath = "/img/Yellow.webp";
-//	            break;
-//	        default:
-//	            imagePath = "/img/Orange.webp";
-//	            break;
-//	    }
-//
-//	    return imagePath;
-//	}
-
-//    @GetMapping("/profile/{userId}")
-//    public String getProfileById(@PathVariable String userId, Model model) {
-//        int profile = userMapper.getProfileById(userId);
-//        model.addAttribute("profile", profile);
-//        return "profile";
-//    }
 
 	// 프로필 사진
 	@GetMapping("/profile")
@@ -142,6 +103,14 @@ public class UserController {
 	}
 	
 	// 프로필 수정
+	@PostMapping("/profile")
+	@ResponseBody
+	public boolean updateProfile(Principal principal, @RequestParam("profile") int profile) {
+	    String userId = principal.getName(); // 로그인한 사용자의 아이디 가져오기
+	    // profile 업데이트
+	    int rowsUpdated = userMapper.updateProfile(userId, profile);
+	    return rowsUpdated > 0;
+	}
 
 
 
