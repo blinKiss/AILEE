@@ -10,7 +10,6 @@
     <fullyQualifiedTypeName name="com.team1.service.MemberServiceImpl"/>
     <fullyQualifiedTypeName name="com.team1.service.MemberService"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
-    <fullyQualifiedTypeName name="lombok.Data"/>
     <fullyQualifiedTypeName name="com.team2.domain.Notice"/>
     <fullyQualifiedTypeName name="java.sql.Clob"/>
     <fullyQualifiedTypeName name="com.team2.controller.NoticeController"/>
@@ -43,4 +42,5 @@
     <fullyQualifiedTypeName name="com.human.domain.Users"/>
     <fullyQualifiedTypeName name="org.springframework.security.crypto.password.PasswordEncoder"/>
     <fullyQualifiedTypeName name="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
 </qualifiedTypeNameHistroy>
